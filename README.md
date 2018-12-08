@@ -1,3 +1,3 @@
 # Exams-Management-System
                         
-##Some
+Main page for Exams Management System project for .NET class.
