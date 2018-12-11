@@ -19,7 +19,7 @@ namespace ExamManagement.Core.Entities
             this.type = type;
             Random random = new Random();
             this.token = random.Next(11111111, 99999999);
-            this.correctionScorePublished = correctionScorePublished
+            this.correctionScorePublished = correctionScorePublished;
         }
         
         public int id { set; get; }
