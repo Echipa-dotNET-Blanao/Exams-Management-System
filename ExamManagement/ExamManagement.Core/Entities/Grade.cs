@@ -15,7 +15,7 @@ namespace ExamManagement.Core.Entities
         
         public string studentId { set; get; }
         public int examId { set; get; }
-        public int grade { set; get; }
+        public float grade { set; get; }
         public bool reevaluationClosed { set; get; }
         public bool final { set; get; }
         public bool reevaluationRequested { set; get; }

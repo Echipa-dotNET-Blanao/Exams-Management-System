@@ -3,6 +3,6 @@
     public class SetGradeRequest
     {
         public int GradeID { get; set; }
-        public int Grade { get; set; }
+        public float Grade { get; set; }
     }
 }

@@ -28,6 +28,12 @@ namespace ExamManagement.Infrastructure.Data
             _dbContext.Set<Grade>().Add(grade);
             _dbContext.SaveChanges();
         }
+
+        public void SetGrade(int gradeId, float value)
+        {
+            _dbContext.Grades.FirstOrDefault<Grade>(g => g.Id == gradeId).grade = value;
+            _dbContext.SaveChanges();
+        }
     }
-    
+
 }

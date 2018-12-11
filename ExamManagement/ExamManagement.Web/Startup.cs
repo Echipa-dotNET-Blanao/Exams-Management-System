@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ExamManagement.Core.Interfaces;
 using ExamManagement.Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +35,7 @@ namespace ExamManagement.Web
                     {
                         mySqlOptions.ServerVersion(new Version(5, 1, 73), ServerType.MySql);
                     }));
+            services.AddTransient<IGradeRepository, GradeRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c =>
             {
