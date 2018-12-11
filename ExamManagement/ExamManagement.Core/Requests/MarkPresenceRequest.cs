@@ -4,6 +4,6 @@
     {
         public string StudentID { get; set; }
         public int ExamID { get; set; }
-        public int Token { get; set; }
+        public string Token { get; set; }
     }
 }
