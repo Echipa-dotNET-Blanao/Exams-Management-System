@@ -10,7 +10,7 @@ namespace ExamManagement.Web.Controllers
     public class StudentController : ControllerBase
     {
         [HttpPost("Presence")]
-        HttpResponseMessage Presence (MarkPresenceRequest markPresence)
+        public HttpResponseMessage Presence (MarkPresenceRequest markPresence)
         {
             if(markPresence == null)
             {
@@ -24,7 +24,7 @@ namespace ExamManagement.Web.Controllers
         }
 
         [HttpPost("GetYourGrade")]
-        HttpResponseMessage GetYourGrade(GetGradeRequest getGradeRequest)
+        public HttpResponseMessage GetYourGrade(GetGradeRequest getGradeRequest)
         {
             if (getGradeRequest == null)
             {
