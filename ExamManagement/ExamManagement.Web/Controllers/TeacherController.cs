@@ -43,6 +43,24 @@ namespace ExamManagement.Web.Controllers
             }
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
-        
+        [HttpPost("set-grades")]
+        public HttpResponseMessage SetGrades(SetGradeRequest setGradeRequest)
+        {
+            if (setGradeRequest == null)
+            {
+                return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
+            }
+            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+        }
+        [HttpPost("publish-grades")]
+        public HttpResponseMessage PublishGrades(SetGradeRequest setGradeRequest)
+        {
+            if (setGradeRequest == null)
+            {
+                return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
+            }
+            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+        }
+
     }
 }
