@@ -28,7 +28,7 @@ namespace Exams_Management_System
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<ApplicationContext>(Options =>
-                Options.UseSqlServer(@"Server=(golar3.go.ro:3306)\mysql;Database=FiiExam;User Id=fiiexam;Password=fiiexam;Trusted_Connection=True;"));
+                Options.UseMySql(@"Server=(golar3.go.ro:3306)\mysql;Database=FiiExam;User Id=fiiexam;Password=fiiexam;Trusted_Connection=True;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
