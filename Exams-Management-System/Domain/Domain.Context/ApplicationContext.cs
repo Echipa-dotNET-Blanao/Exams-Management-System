@@ -9,6 +9,7 @@ namespace Domain.Domain.Context
     public class ApplicationContext : DbContext
     {
         public DbSet<Exam> Exams { get; set; }
+        public DbSet<Courses> Courses { get; set; }
 
         public ApplicationContext(DbContextOptions options) : base(options)
         {

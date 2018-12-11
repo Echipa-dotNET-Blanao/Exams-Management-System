@@ -10,6 +10,8 @@ namespace Services.Services.Implementation
     {
         private IExamRepository _repository;
 
+        private ICoursesRepository _coursesRepository;
+
         public ExamService(IExamRepository _repository)
         {
             _repository = this._repository;
@@ -17,7 +19,16 @@ namespace Services.Services.Implementation
 
         public void AddExam(Exam exam)
         {
-            _repository.CreateExam(exam);
+            string courseName = _coursesRepository.getExamCourseById(exam.CourseId);
+
+            if(courseName == null)
+            {
+                throw new Exception("Course for which you trying to create an exam doesn't exist doesn't exist");
+            }
+            else
+            {
+                _repository.CreateExam(exam);
+            }
         }
     }
 }
