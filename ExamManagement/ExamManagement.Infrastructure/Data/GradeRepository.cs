@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExamManagement.Infrastructure.Data
 {
-    public class GradeRepository : IRepository
+    public class GradeRepository : IGradeRepository
     {
         private readonly AppDbContext _dbContext;
 
@@ -17,33 +18,14 @@ namespace ExamManagement.Infrastructure.Data
             _dbContext = dbContext;
         }
 
-        public T GetById<T>(int id) where T : BaseEntity
+        public int GetGradeByStudentId(char id)
         {
-            return _dbContext.Set<T>().SingleOrDefault(e => e.Id == id);
+            throw (new NotImplementedException());
         }
 
-        public List<T> List<T>() where T : BaseEntity
+        public void CreateGrade(Grade grade)
         {
-            return _dbContext.Set<T>().ToList();
-        }
-
-        public T CreateGrade<T>(T entity) where T : Grade
-        {
-            _dbContext.Set<T>().Add(entity);
-            _dbContext.SaveChanges();
-
-            return entity;
-        }
-
-        public void Delete<T>(T entity) where T : BaseEntity
-        {
-            _dbContext.Set<T>().Remove(entity);
-            _dbContext.SaveChanges();
-        }
-
-        public void Update<T>(T entity) where T : BaseEntity
-        {
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.Set<Grade>().Add(grade);
             _dbContext.SaveChanges();
         }
     }

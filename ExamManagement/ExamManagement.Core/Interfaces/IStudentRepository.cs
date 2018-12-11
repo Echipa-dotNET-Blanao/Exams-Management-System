@@ -1,3 +1,5 @@
+using ExamManagement.Core.Entities;
+
 namespace ExamManagement.Core.Interfaces
 {
     public interface IStudentRepository
