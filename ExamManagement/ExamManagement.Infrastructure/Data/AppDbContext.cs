@@ -10,13 +10,19 @@ namespace ExamManagement.Infrastructure.Data
     {
         private readonly IDomainEventDispatcher _dispatcher;
 
+        public DbSet<CorrectionScore> CorrectionScores { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Didactic> Didactics { get; set; }
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<Grade> Grades { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+
         public AppDbContext(DbContextOptions<AppDbContext> options, IDomainEventDispatcher dispatcher)
             : base(options)
         {
             _dispatcher = dispatcher;
         }
-
-        public DbSet<ToDoItem> ToDoItems { get; set; }
 
         public override int SaveChanges()
         {
