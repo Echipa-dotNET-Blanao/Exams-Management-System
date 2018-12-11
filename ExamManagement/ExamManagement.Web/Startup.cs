@@ -37,6 +37,7 @@ namespace ExamManagement.Web
                     }));
             services.AddScoped<DbContext, AppDbContext>();
             services.AddTransient<IGradeRepository, GradeRepository>();
+            services.AddTransient<IExamRepository, ExamRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c =>
             {
