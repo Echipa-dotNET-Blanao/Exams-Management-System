@@ -30,7 +30,7 @@ namespace ExamManagement.Web.Controllers
                 return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
             }
             Exam tmpExam = new Exam(1, createExamRequest.CourseID, createExamRequest.ExamDate, createExamRequest.Room, createExamRequest.StartTime, createExamRequest.EndTime, createExamRequest.Type);
-            _examRepository.CreateExam(_examRepository.CreateExam(tmpExam));
+            _examRepository.CreateExam(tmpExam);
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
 
