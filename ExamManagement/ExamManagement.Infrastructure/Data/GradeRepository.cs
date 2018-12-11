@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
 using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces;
-using ExamManagement.Core.SharedKernel;
-using Microsoft.EntityFrameworkCore;
 
 namespace ExamManagement.Infrastructure.Data
 {
@@ -18,15 +15,27 @@ namespace ExamManagement.Infrastructure.Data
             _dbContext = dbContext;
         }
 
-        public int GetGradeByStudentId(char id)
+        public IEnumerable<Grade> GetGradeByStudentId(string studentId, int examId)
         {
-            throw (new NotImplementedException());
+
+            IEnumerable<Grade> gradeQuery = from grade in _dbContext.Grades
+                where grade.studentId == studentId && grade.examId == examId
+                orderby grade
+                select grade;
+
+            return gradeQuery;
+
         }
 
         public void CreateGrade(Grade grade)
         {
             _dbContext.Set<Grade>().Add(grade);
             _dbContext.SaveChanges();
+        }
+
+        public void MarkStudentPresent(string id)
+        {
+            throw new System.NotImplementedException();
         }
     }
     

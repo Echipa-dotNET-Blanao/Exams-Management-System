@@ -15,7 +15,8 @@ namespace ExamManagement.Infrastructure.Data
         
         public void CreateExam(Exam exam)
         {
-            throw new System.NotImplementedException();
+            _dbContext.Set<Exam>().Add(exam);
+            _dbContext.SaveChanges();
         }
 
         public void StartExam(Exam exam)
