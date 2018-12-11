@@ -17,7 +17,7 @@ namespace Infrastructure.Infrastructure.Data
 
         public string getExamCourseById(int id)
         {
-            var courseTitle = _context.Courses.First(c => c.Id == id);
+            var courseTitle = _context.Course.First(c => c.Id == id);
 
             return courseTitle.Title;
         }

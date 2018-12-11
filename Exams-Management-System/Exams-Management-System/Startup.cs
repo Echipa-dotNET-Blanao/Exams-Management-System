@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.Domain.Context;
 using Domain.Domain.Interfaces;
+using Infrastructure.Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,9 @@ namespace Exams_Management_System
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<ApplicationContext>(Options =>
                 Options.UseMySql(@"Server=(golar3.go.ro:3306)\mysql;Database=FiiExam;User Id=fiiexam;Password=fiiexam;Trusted_Connection=True;"));
+            services.AddTransient<IGradeRepository, GradeRepository>();
+            services.AddTransient<IStudentRepository, StudentRepository>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

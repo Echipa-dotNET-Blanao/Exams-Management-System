@@ -18,14 +18,6 @@ namespace Exams_Management_System.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        public ActionResult Grades()
-        {
-            using (var db = new Grades())
-            {
-                
-            }
-        }
-
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)

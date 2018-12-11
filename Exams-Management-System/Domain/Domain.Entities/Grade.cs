@@ -1,11 +1,11 @@
 namespace Domain.Domain.Entities
 {
-    public class Grades
+    public class Grade
     {
         
-        public Grades(){}
+        public Grade(){}
 
-        public Grades(char studentId, int examId, int grade, bool reevaluationClosed, bool final,
+        public Grade(char studentId, int examId, int grade, bool reevaluationClosed, bool final,
             bool reevaluationRequested, int pages)
         {
             this.studentId = studentId;
