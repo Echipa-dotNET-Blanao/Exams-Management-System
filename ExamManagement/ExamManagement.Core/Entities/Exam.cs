@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 
 namespace ExamManagement.Core.Entities
 {
@@ -15,6 +16,8 @@ namespace ExamManagement.Core.Entities
             this.startTime = startTime;
             this.endTime = endTime;
             this.type = type;
+            Random random = new Random();
+            this.token = random.Next(11111111, 99999999);
         }
         
         public int id { set; get; }
@@ -24,7 +27,7 @@ namespace ExamManagement.Core.Entities
         public DateTime startTime { set; get; }
         public DateTime endTime { set; get; }
         public string type { set; get; }
-        public string token { set; get; }
+        public int token { set; get; }
         public bool finished { set; get; }
         public bool correctionScorePublished { set; get; }
         public bool gradesPublished { set; get; }
