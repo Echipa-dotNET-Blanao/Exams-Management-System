@@ -6,16 +6,12 @@ namespace ExamManagement.Core.Requests
 {
     public class CreateExamRequest
     {
-        public int CourseId { get; set; }
+        public int CourseID { get; set; }
         public DateTime ExamDate { get; set; }
         public string Room { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public int Type { get; set; }
         public string CorrectionScore { get; set; }
-    }
-    public class StartExam
-    {
-        public int ExamId { get; set; }
     }
 }
