@@ -35,6 +35,7 @@ namespace ExamManagement.Web
                     {
                         mySqlOptions.ServerVersion(new Version(5, 1, 73), ServerType.MySql);
                     }));
+            services.AddScoped<DbContext, AppDbContext>();
             services.AddTransient<IGradeRepository, GradeRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c =>

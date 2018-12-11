@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ExamManagement.Core.Entities
 {
     public class Student
@@ -10,7 +12,7 @@ namespace ExamManagement.Core.Entities
             this.studyYear = studyYear;
             this.studyGroup = studyGroup;
         }
-        
+        [Key]
         public string id { set; get; }
         public string email { set; get; }
         public string passwordBase { set; get; }

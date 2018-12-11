@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ExamManagement.Core.Entities
 {
     public class Teacher
@@ -8,7 +10,7 @@ namespace ExamManagement.Core.Entities
             this.fullName = fullName;
             this.email = email;
         }
-        
+        [Key]
         public int id { set; get; }
         public string fullName { set; get; }
         public string email { set; get; }

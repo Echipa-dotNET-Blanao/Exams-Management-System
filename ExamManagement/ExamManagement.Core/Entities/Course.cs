@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ExamManagement.Core.Entities
 {
     public class Course
@@ -9,7 +11,7 @@ namespace ExamManagement.Core.Entities
             this.studyYear = studyYear;
             this.semester = semester;
         }
-        
+        [Key]
         public int id { set; get; }
         public string title { set; get; }
         public int studyYear { set; get; }

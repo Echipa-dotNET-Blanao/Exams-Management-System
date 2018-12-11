@@ -18,10 +18,9 @@ namespace ExamManagement.Infrastructure.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options, IDomainEventDispatcher dispatcher)
+        public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
-            _dispatcher = dispatcher;
         }
 
         public override int SaveChanges()

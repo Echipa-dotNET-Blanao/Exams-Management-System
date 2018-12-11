@@ -1,4 +1,5 @@
 using ExamManagement.Core.SharedKernel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ExamManagement.Core.Entities
 {
@@ -12,14 +13,15 @@ namespace ExamManagement.Core.Entities
             this.grade = grade;
             this.pages = pages;
         }
-        
+        [Key]
+        public int id { set; get; }
         public string studentId { set; get; }
         public int examId { set; get; }
         public float grade { set; get; }
-        public int reevaluationClosed { set; get; }
-        public int final { set; get; }
-        public int reevaluationRequested { set; get; }
+        public bool reevaluationClosed { set; get; }
+        public bool final { set; get; }
+        public bool reevaluationRequested { set; get; }
         public int pages { set; get; }
-        public int present { set; get; }
+        public bool present { set; get; }
     }
 }

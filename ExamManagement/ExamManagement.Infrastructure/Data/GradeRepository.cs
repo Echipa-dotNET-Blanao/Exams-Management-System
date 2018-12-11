@@ -37,7 +37,7 @@ namespace ExamManagement.Infrastructure.Data
         public void SetGrade(int gradeId, float value)
         {
             var query = from grade in _dbContext.Grades
-                where grade.Id == gradeId
+                where grade.id == gradeId
                 select grade;
 
             foreach (var grade in query)
@@ -56,7 +56,7 @@ namespace ExamManagement.Infrastructure.Data
 
             foreach (var grade in query)
             {
-                grade.present = 1;
+                grade.present = true;
             }
 
             _dbContext.SaveChanges();
