@@ -6,5 +6,6 @@ namespace ExamManagement.Core.Interfaces
     {
         int GetGradeByStudentId(char id);
         void CreateGrade(Grade grade);
+        
     }
 }
