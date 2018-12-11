@@ -22,7 +22,7 @@ namespace ExamManagement.Web.Controllers
             _examRepository = examRepository;
         }
 
-        [HttpPost("create-exam")]
+        [HttpPost("CreateExam")]
         public HttpResponseMessage CreateExam(CreateExamRequest createExamRequest)
         {
             if(createExamRequest == null)
@@ -31,11 +31,12 @@ namespace ExamManagement.Web.Controllers
             }
             Exam tmpExam = new Exam(1, createExamRequest.CourseID, createExamRequest.ExamDate, createExamRequest.Room, createExamRequest.StartTime, createExamRequest.EndTime, createExamRequest.Type);
             _examRepository.CreateExam(tmpExam);
+
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
 
         
-        [HttpPost("start-exam")]
+        [HttpPost("StartExam")]
         public HttpResponseMessage StartExam(StartExamRequest startExamRequest)
         {
             if(startExamRequest == null)
@@ -45,7 +46,7 @@ namespace ExamManagement.Web.Controllers
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
 
-        [HttpPost("end-exam")]
+        [HttpPost("EndExam")]
         public HttpResponseMessage EndExam(EndExamRequest endExamRequest)
         {
             if(endExamRequest == null)
@@ -55,7 +56,7 @@ namespace ExamManagement.Web.Controllers
 
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
-        [HttpPost("set-grades")]
+        [HttpPost("SetGrades")]
         public HttpResponseMessage SetGrades(SetGradeRequest setGradeRequest)
         {
             if (setGradeRequest == null)
@@ -64,7 +65,7 @@ namespace ExamManagement.Web.Controllers
             }
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
-        [HttpPost("publish-grades")]
+        [HttpPost("PublishGrades")]
         public HttpResponseMessage PublishGrades(SetGradeRequest setGradeRequest)
         {
             if (setGradeRequest == null)
