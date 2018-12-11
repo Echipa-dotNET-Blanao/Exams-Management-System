@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExamManagement.Infrastructure.Data
 {
@@ -10,9 +11,9 @@ namespace ExamManagement.Infrastructure.Data
     {
         private readonly AppDbContext _dbContext;
 
-        public GradeRepository(AppDbContext dbContext)
+        public GradeRepository(DbContext dbContext)
         {
-            _dbContext = dbContext;
+            _dbContext = dbContext as AppDbContext;
         }
 
         public IEnumerable<Grade> GetGradeByStudentId(string studentId, int examId)
