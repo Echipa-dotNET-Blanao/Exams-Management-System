@@ -33,9 +33,18 @@ namespace ExamManagement.Infrastructure.Data
             _dbContext.SaveChanges();
         }
 
-        public void MarkStudentPresent(string id)
+        public void MarkStudentPresent(string studentId, int examId)
         {
-            throw new System.NotImplementedException();
+            var query = from grade in _dbContext.Grades
+                where grade.studentId == studentId && grade.examId == examId
+                select grade;
+
+            foreach (var grade in query)
+            {
+                grade.present = 1;
+            }
+
+            _dbContext.SaveChanges();
         }
     }
     

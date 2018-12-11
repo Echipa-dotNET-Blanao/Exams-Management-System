@@ -15,7 +15,8 @@ namespace ExamManagement.Infrastructure.Data
         
         public void CreateExam(Exam exam)
         {
-            _dbContext.Set<Exam>().Add(exam);
+            _dbContext.Exams.Add(exam);
+            //_dbContext.Set<Exam>().Add(exam);
             _dbContext.SaveChanges();
         }
 

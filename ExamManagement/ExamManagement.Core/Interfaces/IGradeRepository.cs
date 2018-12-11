@@ -7,7 +7,7 @@ namespace ExamManagement.Core.Interfaces
     {
         IEnumerable<Grade> GetGradeByStudentId(string studentId, int examId);
         void CreateGrade(Grade grade);
-        void MarkStudentPresent(string id);
+        void MarkStudentPresent(string studentId, int examId);
         
 
     }
