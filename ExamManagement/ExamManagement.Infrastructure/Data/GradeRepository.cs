@@ -33,6 +33,20 @@ namespace ExamManagement.Infrastructure.Data
             _dbContext.SaveChanges();
         }
 
+        public void SetGrade(int gradeId, float value)
+        {
+            var query = from grade in _dbContext.Grades
+                where grade.Id == gradeId
+                select grade;
+
+            foreach (var grade in query)
+            {
+                grade.grade = value;
+            }
+
+            _dbContext.SaveChanges();
+        }
+
         public void MarkStudentPresent(string studentId, int examId)
         {
             var query = from grade in _dbContext.Grades
