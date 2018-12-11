@@ -11,9 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{138818C3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExamManagement.Tests", "ExamManagement.Tests\ExamManagement.Tests.csproj", "{FFE7D8AD-7D25-4DF0-8A75-587DB211D1B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExamManagement.Core", "ExamManagement.Core\ExamManagement.Core.csproj", "{9202D9ED-8A16-43C8-8F4D-A09FFBBA12F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamManagement.Core", "ExamManagement.Core\ExamManagement.Core.csproj", "{9202D9ED-8A16-43C8-8F4D-A09FFBBA12F2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExamManagement.Web", "ExamManagement.Web\ExamManagement.Web.csproj", "{ECFA239A-057F-4D59-947D-E3704E2A8F78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamManagement.Web", "ExamManagement.Web\ExamManagement.Web.csproj", "{ECFA239A-057F-4D59-947D-E3704E2A8F78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
