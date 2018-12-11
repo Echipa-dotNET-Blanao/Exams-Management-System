@@ -1,3 +1,4 @@
+using System;
 using System.Reflection.Metadata;
 
 namespace ExamManagement.Core.Entities
@@ -6,7 +7,7 @@ namespace ExamManagement.Core.Entities
     {
         
         public int id { set; get; }
-        public Blob binaryData { set; get; }
+        public Byte binaryData { set; get; }
         
     }
 }
