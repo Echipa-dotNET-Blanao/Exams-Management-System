@@ -12,6 +12,6 @@ namespace ExamManagement.Core.Requests
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public string Type { get; set; }
-        public string CorrectionScore { get; set; }
+        public int CorrectionScore { get; set; }
     }
 }
