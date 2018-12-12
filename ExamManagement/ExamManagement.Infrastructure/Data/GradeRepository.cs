@@ -16,7 +16,7 @@ namespace ExamManagement.Infrastructure.Data
             _dbContext = dbContext as AppDbContext;
         }
 
-        public IEnumerable<Grade> GetGradeByStudentId(string studentId, int examId)
+        public Grade GetGradeByStudentId(string studentId, int examId)
         {
 
             IEnumerable<Grade> gradeQuery = from grade in _dbContext.Grades
@@ -24,7 +24,7 @@ namespace ExamManagement.Infrastructure.Data
                 orderby grade
                 select grade;
 
-            return gradeQuery;
+            return gradeQuery.FirstOrDefault();
 
         }
 

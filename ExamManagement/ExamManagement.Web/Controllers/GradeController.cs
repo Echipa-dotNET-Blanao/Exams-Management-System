@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces;
 using ExamManagement.Core.Requests;
 using Microsoft.AspNetCore.Http;
@@ -22,7 +23,7 @@ namespace ExamManagement.Web.Controllers
             _gradeRepository = gradeRepository;
         }
 
-        [HttpPost]
+        [HttpPost("set")]
         public HttpResponseMessage SetGrade(SetGradeRequest setGradeRequest)
         {
             if (setGradeRequest == null)
@@ -31,6 +32,16 @@ namespace ExamManagement.Web.Controllers
             }
             _gradeRepository.SetGrade(setGradeRequest.GradeID, setGradeRequest.Grade);
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+        }
+        [HttpPost("get")]
+        public ActionResult<Grade> GetGrade(GetGradeRequest getGradeRequest)
+        {
+            //if (getGradeRequest == null)
+            //{
+            //    return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
+            //}
+
+            return _gradeRepository.GetGradeByStudentId(getGradeRequest.StudentID, getGradeRequest.ExamID);
         }
     }
 }

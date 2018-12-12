@@ -5,7 +5,7 @@ namespace ExamManagement.Core.Interfaces
 {
     public interface IGradeRepository
     {
-        IEnumerable<Grade> GetGradeByStudentId(string studentId, int examId);
+        Grade GetGradeByStudentId(string studentId, int examId);
         void CreateGrade(Grade grade);
         void SetGrade(int gradeId, float value);
         void MarkStudentPresent(string studentId, int examId);
