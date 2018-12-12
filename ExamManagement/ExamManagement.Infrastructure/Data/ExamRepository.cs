@@ -26,6 +26,7 @@ namespace ExamManagement.Infrastructure.Data
 
             var assignedStudents = (from students in _dbContext.Students
                 join courses in _dbContext.Courses on students.studyYear equals courses.studyYear
+                where students.studyYear == courses.studyYear && courses.id == exam.courseId
                 select students);
 
 
