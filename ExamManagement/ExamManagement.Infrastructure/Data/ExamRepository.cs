@@ -59,6 +59,8 @@ namespace ExamManagement.Infrastructure.Data
                 select exam).SingleOrDefault();
 
             exams.finished = true;
+
+            _dbContext.SaveChanges();
         }
 
         public void PublishGrades(int examID)
