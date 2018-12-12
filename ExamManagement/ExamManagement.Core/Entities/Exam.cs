@@ -10,16 +10,13 @@ namespace ExamManagement.Core.Entities
         public Exam(int courseId, DateTime examDate, string room, DateTime startTime, DateTime endTime,
             char type, bool correctionScorePublished)
         {
-            //this.id = id;
-            id = 50;
+            this.id = id;
             this.courseId = courseId;
             this.examDate = examDate;
             this.room = room;
             this.startTime = startTime;
             this.endTime = endTime;
             this.type = type;
-            Random random = new Random();
-            this.token = random.Next(11111111, 99999999).ToString();
             this.correctionScorePublished = correctionScorePublished;
         }
         [Key]
@@ -30,6 +27,7 @@ namespace ExamManagement.Core.Entities
         public DateTime startTime { set; get; }
         public DateTime endTime { set; get; }
         public char type { set; get; }
+        public bool started { set; get; }
         public string token { set; get; }
         public bool finished { set; get; }
         public bool correctionScorePublished { set; get; }

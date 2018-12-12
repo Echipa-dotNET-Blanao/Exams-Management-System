@@ -1,3 +1,4 @@
+using System.Linq;
 using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces;
 using ExamManagement.Core.Services;
@@ -18,18 +19,46 @@ namespace ExamManagement.Infrastructure.Data
 
         public void CreateExam(Exam exam)
         {
+
+            int index = 0;
+            
             _dbContext.Set<Exam>().Add(exam);
+
+            var assignedStudents = (from students in _dbContext.Students
+                join courses in _dbContext.Courses on students.studyYear equals courses.studyYear
+                select students);
+
+
+            foreach (var student in assignedStudents)
+            {
+                Grade grade = new Grade(student.id, exam.courseId, 0, 0);
+                _dbContext.Add(grade);
+            }
+            
+            
             _dbContext.SaveChanges();
+            
         }
 
-        public void StartExam(int examID)
+        public void StartExam(int examId)
         {
-            throw new System.NotImplementedException();
+            Exam exams = (from exam in _dbContext.Exams
+                where exam.id == examId
+                select exam).SingleOrDefault();
+
+            exams.started = true;
+
+            _dbContext.SaveChanges();
+
         }
 
-        public void CloseExam(int examID)
+        public void CloseExam(int examId)
         {
-            throw new System.NotImplementedException();
+            Exam exams = (from exam in _dbContext.Exams
+                where exam.id == examId
+                select exam).SingleOrDefault();
+
+            exams.finished = true;
         }
 
         public void PublishGrades(int examID)
