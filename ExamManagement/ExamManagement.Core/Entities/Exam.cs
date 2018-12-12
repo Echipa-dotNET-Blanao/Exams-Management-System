@@ -7,19 +7,16 @@ namespace ExamManagement.Core.Entities
     public class Exam
     {
 
-        public Exam(int courseId, DateTime examDate, string room, DateTime startTime, DateTime endTime,
+        public Exam(int id, int courseId, DateTime examDate, string room, DateTime startTime, DateTime endTime,
             char type, bool correctionScorePublished)
         {
-            //this.id = id;
-            id = 50;
+            this.id = id;
             this.courseId = courseId;
             this.examDate = examDate;
             this.room = room;
             this.startTime = startTime;
             this.endTime = endTime;
             this.type = type;
-            Random random = new Random();
-            this.token = random.Next(11111111, 99999999).ToString();
             this.correctionScorePublished = correctionScorePublished;
         }
         [Key]

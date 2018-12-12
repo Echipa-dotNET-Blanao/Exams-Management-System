@@ -61,6 +61,15 @@ namespace ExamManagement.Infrastructure.Data
 
             _dbContext.SaveChanges();
         }
+
+        public IEnumerable<Grade> GetGradeByGradeId(int gradeId)
+        {
+            IEnumerable<Grade> query = from grade in _dbContext.Grades
+                where grade.id == gradeId
+                select grade;
+
+            return query;
+        }
     }
 
 }
