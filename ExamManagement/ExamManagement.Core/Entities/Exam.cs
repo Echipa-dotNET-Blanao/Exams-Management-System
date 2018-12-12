@@ -7,7 +7,7 @@ namespace ExamManagement.Core.Entities
     public class Exam
     {
 
-        public Exam(int id, int courseId, DateTime examDate, string room, DateTime startTime, DateTime endTime,
+        public Exam(int courseId, DateTime examDate, string room, DateTime startTime, DateTime endTime,
             char type, bool correctionScorePublished)
         {
             this.id = id;
