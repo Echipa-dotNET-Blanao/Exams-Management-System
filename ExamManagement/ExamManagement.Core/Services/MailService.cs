@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ExamManagement.Core.Services
 {
-    class MailService
+    public static class MailService
     {
         public static void SendEmail(string toAdress, string subject, string body)
         {
