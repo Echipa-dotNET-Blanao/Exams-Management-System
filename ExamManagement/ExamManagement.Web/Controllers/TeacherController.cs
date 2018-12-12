@@ -43,6 +43,7 @@ namespace ExamManagement.Web.Controllers
             {
                 return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
             }
+            _examRepository.StartExam(startExamRequest.ExamID);
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
 
@@ -53,7 +54,7 @@ namespace ExamManagement.Web.Controllers
             {
                 return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
             }
-
+            _examRepository.CloseExam(endExamRequest.ExamID);
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
         [HttpPost("SetGrades")]
@@ -65,6 +66,7 @@ namespace ExamManagement.Web.Controllers
             }
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
+
         [HttpPost("PublishGrades")]
         public HttpResponseMessage PublishGrades(SetGradeRequest setGradeRequest)
         {
