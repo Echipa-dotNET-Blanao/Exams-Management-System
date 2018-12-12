@@ -25,7 +25,7 @@ namespace ExamManagement.Web.Controllers
         [HttpPost("CreateExam")]
         public HttpResponseMessage CreateExam(CreateExamRequest createExamRequest)
         {
-            if(createExamRequest == null)
+            if (createExamRequest == null)
             {
                 return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
             }
@@ -35,11 +35,11 @@ namespace ExamManagement.Web.Controllers
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
 
-        
+
         [HttpPost("StartExam")]
         public HttpResponseMessage StartExam(StartExamRequest startExamRequest)
         {
-            if(startExamRequest == null)
+            if (startExamRequest == null)
             {
                 return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
             }
@@ -50,7 +50,7 @@ namespace ExamManagement.Web.Controllers
         [HttpPost("EndExam")]
         public HttpResponseMessage EndExam(EndExamRequest endExamRequest)
         {
-            if(endExamRequest == null)
+            if (endExamRequest == null)
             {
                 return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
             }
@@ -68,12 +68,13 @@ namespace ExamManagement.Web.Controllers
         }
 
         [HttpPost("PublishGrades")]
-        public HttpResponseMessage PublishGrades(SetGradeRequest setGradeRequest)
+        public HttpResponseMessage PublishGrades(PublishAllGradesRequest publishAllGradesRequest)
         {
-            if (setGradeRequest == null)
+            if (publishAllGradesRequest == null)
             {
                 return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
             }
+            _examRepository.PublishGrades(publishAllGradesRequest.ExamID);
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
 
