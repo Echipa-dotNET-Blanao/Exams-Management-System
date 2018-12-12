@@ -30,8 +30,6 @@ namespace ExamManagement.Core.Services
                 client.Connect(SmtpServer, SmtpPortNumber, false);
                 client.Authenticate("fii.exam.management@gmail.com", "fiiexam123");
                 client.Send(mimeMessage);
-                Console.WriteLine("The mail has been sent successfully !!");
-                Console.ReadLine();
                 client.Disconnect(true);
 
             }

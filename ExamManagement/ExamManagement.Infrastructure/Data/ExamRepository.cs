@@ -72,6 +72,7 @@ namespace ExamManagement.Infrastructure.Data
                                     join exam in _dbContext.Exams on course.id equals exam.courseId
                                     join grade in _dbContext.Grades on exam.id equals grade.examId
                                     where student.studyYear == course.studyYear && course.id == exam.courseId && exam.id == grade.examId
+                                    && student.id == grade.studentId && exam.id == examID
                                     select new { student, grade, course }).Distinct();
             foreach (var tuple in eligibleStudents)
             {
