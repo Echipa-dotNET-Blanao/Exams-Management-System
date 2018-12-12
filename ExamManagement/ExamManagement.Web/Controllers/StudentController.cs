@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http;
 using ExamManagement.Core.Requests;
+using ExamManagement.Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExamManagement.Web.Controllers
@@ -9,6 +10,7 @@ namespace ExamManagement.Web.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
+        private readonly GradeRepository gradeRepo;
         [HttpPost("Presence")]
         public HttpResponseMessage Presence (MarkPresenceRequest markPresence)
         {
@@ -16,8 +18,9 @@ namespace ExamManagement.Web.Controllers
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
-            else if(markPresence.ExamID == 0)
+            else if(markPresence.StudentID != null && markPresence.ExamID != 0 && markPresence.Token != null)
             {
+                gradeRepo.MarkStudentPresent(markPresence.StudentID, markPresence.ExamID);
                 return new HttpResponseMessage(HttpStatusCode.Accepted);
             }
             return new HttpResponseMessage(HttpStatusCode.GatewayTimeout);
@@ -30,8 +33,9 @@ namespace ExamManagement.Web.Controllers
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
-            else if (getGradeRequest.ExamID == 0)
+            else if (getGradeRequest.StudentID != null && getGradeRequest.ExamID != 0)
             {
+                gradeRepo.GetGradeByStudentId(getGradeRequest.StudentID, getGradeRequest.ExamID);
                 return new HttpResponseMessage(HttpStatusCode.Accepted);
             }
             return new HttpResponseMessage(HttpStatusCode.GatewayTimeout);
