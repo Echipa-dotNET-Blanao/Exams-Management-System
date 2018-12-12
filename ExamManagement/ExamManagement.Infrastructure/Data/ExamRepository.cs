@@ -1,7 +1,10 @@
 using System.Linq;
 using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.SqlServer.Server;
+using Org.BouncyCastle.Asn1.X9;
 
 namespace ExamManagement.Infrastructure.Data
 {
@@ -38,14 +41,25 @@ namespace ExamManagement.Infrastructure.Data
             
         }
 
-        public void StartExam(Exam exam)
+        public void StartExam(int examId)
         {
-            throw new System.NotImplementedException();
+            Exam exams = (from exam in _dbContext.Exams
+                where exam.id == examId
+                select exam).SingleOrDefault();
+
+            exams.started = true;
+
+            _dbContext.SaveChanges();
+
         }
 
-        public void CloseExam(Exam exam)
+        public void CloseExam(int examId)
         {
-            throw new System.NotImplementedException();
+            Exam exams = (from exam in _dbContext.Exams
+                where exam.id == examId
+                select exam).SingleOrDefault();
+
+            exams.finished = true;
         }
     }
 }

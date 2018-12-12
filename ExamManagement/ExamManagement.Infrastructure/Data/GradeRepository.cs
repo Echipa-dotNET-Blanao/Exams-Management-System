@@ -50,14 +50,11 @@ namespace ExamManagement.Infrastructure.Data
 
         public void MarkStudentPresent(string studentId, int examId)
         {
-            var query = from grade in _dbContext.Grades
+            var query = (from grade in _dbContext.Grades
                 where grade.studentId == studentId && grade.examId == examId
-                select grade;
+                select grade).SingleOrDefault();
 
-            foreach (var grade in query)
-            {
-                grade.present = true;
-            }
+            query.present = true;
 
             _dbContext.SaveChanges();
         }

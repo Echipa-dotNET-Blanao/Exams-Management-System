@@ -27,6 +27,7 @@ namespace ExamManagement.Core.Entities
         public DateTime startTime { set; get; }
         public DateTime endTime { set; get; }
         public char type { set; get; }
+        public bool started { set; get; }
         public string token { set; get; }
         public bool finished { set; get; }
         public bool correctionScorePublished { set; get; }
