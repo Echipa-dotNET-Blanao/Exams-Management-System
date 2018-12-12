@@ -20,9 +20,9 @@ namespace ExamManagement.Infrastructure.Data
         {
 
             IEnumerable<Grade> gradeQuery = from grade in _dbContext.Grades
-                where grade.studentId == studentId && grade.examId == examId
-                orderby grade
-                select grade;
+                                            where grade.studentId == studentId && grade.examId == examId
+                                            orderby grade
+                                            select grade;
 
             return gradeQuery.FirstOrDefault();
 
@@ -37,8 +37,8 @@ namespace ExamManagement.Infrastructure.Data
         public void SetGrade(int gradeId, float value)
         {
             var query = from grade in _dbContext.Grades
-                where grade.id == gradeId
-                select grade;
+                        where grade.id == gradeId
+                        select grade;
 
             foreach (var grade in query)
             {
@@ -48,22 +48,26 @@ namespace ExamManagement.Infrastructure.Data
             _dbContext.SaveChanges();
         }
 
-        public void MarkStudentPresent(string studentId, int examId)
+        public void MarkStudentPresent(string studentId, int examId, string userToken)
         {
-            var query = (from grade in _dbContext.Grades
-                where grade.studentId == studentId && grade.examId == examId
-                select grade).SingleOrDefault();
-
-            query.present = true;
-
-            _dbContext.SaveChanges();
+            var examToken = (from exam in _dbContext.Exams
+                             where exam.id == examId
+                             select exam.token).FirstOrDefault();
+            if (examToken == userToken)
+            {
+                var studentGrade = (from grade in _dbContext.Grades
+                                    where grade.studentId == studentId && grade.examId == examId
+                                    select grade).SingleOrDefault();
+                studentGrade.present = true;
+                _dbContext.SaveChanges();
+            }
         }
 
         public IEnumerable<Grade> GetGradeByGradeId(int gradeId)
         {
             IEnumerable<Grade> query = from grade in _dbContext.Grades
-                where grade.id == gradeId
-                select grade;
+                                       where grade.id == gradeId
+                                       select grade;
 
             return query;
         }

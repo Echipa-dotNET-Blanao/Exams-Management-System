@@ -21,13 +21,13 @@ namespace ExamManagement.Infrastructure.Data
         {
 
             int index = 0;
-            
+
             _dbContext.Set<Exam>().Add(exam);
 
             var assignedStudents = (from students in _dbContext.Students
-                join courses in _dbContext.Courses on students.studyYear equals courses.studyYear
-                where students.studyYear == courses.studyYear && courses.id == exam.courseId
-                select students);
+                                    join courses in _dbContext.Courses on students.studyYear equals courses.studyYear
+                                    where students.studyYear == courses.studyYear && courses.id == exam.courseId
+                                    select students);
 
 
             foreach (var student in assignedStudents)
@@ -35,19 +35,39 @@ namespace ExamManagement.Infrastructure.Data
                 Grade grade = new Grade(student.id, exam.courseId, 0, 0);
                 _dbContext.Add(grade);
             }
-            
-            
+
+
             _dbContext.SaveChanges();
-            
+
         }
 
         public void StartExam(int examId)
         {
             Exam exams = (from exam in _dbContext.Exams
-                where exam.id == examId
-                select exam).SingleOrDefault();
-
+                          where exam.id == examId
+                          select exam).SingleOrDefault();
+            string token = "";
+            Random r = new Random();
+            for (int i = 0; i < 8; i++)
+            {
+                char c = ' ';
+                int character = r.Next(0, 61);
+                if (character <= 25)
+                {
+                    c = (char)(65 + character);
+                }
+                else if (character <= 51)
+                {
+                    c = (char)(97 + character - 26);
+                }
+                else
+                {
+                    c = (char)(48 + character - 52);
+                }
+                token += c;
+            }
             exams.started = true;
+            exams.token = token;
 
             _dbContext.SaveChanges();
 
@@ -56,8 +76,8 @@ namespace ExamManagement.Infrastructure.Data
         public void CloseExam(int examId)
         {
             Exam exams = (from exam in _dbContext.Exams
-                where exam.id == examId
-                select exam).SingleOrDefault();
+                          where exam.id == examId
+                          select exam).SingleOrDefault();
 
             exams.finished = true;
 

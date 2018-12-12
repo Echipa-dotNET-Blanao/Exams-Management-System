@@ -17,15 +17,15 @@ namespace ExamManagement.Web.Controllers
             _gradeRepo = gradeRepo;
         }
         [HttpPost("Presence")]
-        public HttpResponseMessage Presence (MarkPresenceRequest markPresence)
+        public HttpResponseMessage Presence(MarkPresenceRequest markPresence)
         {
-            if(markPresence == null)
+            if (markPresence == null)
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
-            else if(markPresence.StudentID != null && markPresence.ExamID != 0 && markPresence.Token != null)
+            else if (markPresence.StudentID != null && markPresence.ExamID != 0 && markPresence.Token != null)
             {
-                _gradeRepo.MarkStudentPresent(markPresence.StudentID, markPresence.ExamID);
+                _gradeRepo.MarkStudentPresent(markPresence.StudentID, markPresence.ExamID, markPresence.Token);
                 return new HttpResponseMessage(HttpStatusCode.Accepted);
             }
             return new HttpResponseMessage(HttpStatusCode.GatewayTimeout);
