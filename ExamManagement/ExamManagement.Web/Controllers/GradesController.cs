@@ -28,14 +28,14 @@ namespace ExamManagement.Web.Controllers
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
-        [HttpGet("{examId}/{studentId}")]
-        public JsonResult GetGrade(int examId, string studentId)
+        [HttpGet]
+        public JsonResult GetGrade([FromBody]GetGradeRequest getGradeRequest)
         {
-            if (studentId == null) throw new ArgumentNullException(nameof(studentId));
+            if (getGradeRequest.StudentID == null) throw new ArgumentNullException(nameof(getGradeRequest.StudentID));
 
-            if (examId <= 0) throw new ArgumentOutOfRangeException(nameof(examId));
+            if (getGradeRequest.ExamID <= 0) throw new ArgumentOutOfRangeException(nameof(getGradeRequest.ExamID));
 
-            return Json(_gradeRepository.GetGradeByStudentId(studentId, examId));
+            return Json(_gradeRepository.GetGradeByStudentId(getGradeRequest.StudentID, getGradeRequest.ExamID));
         }
     }
 }

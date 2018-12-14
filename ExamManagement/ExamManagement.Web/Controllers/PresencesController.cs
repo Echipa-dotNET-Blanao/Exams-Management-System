@@ -1,5 +1,9 @@
 ﻿using ExamManagement.Core.Interfaces;
+using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Net;
+using System.Net.Http;
 
 namespace ExamManagement.Web.Controllers
 {
@@ -15,14 +19,14 @@ namespace ExamManagement.Web.Controllers
 
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
         //TODO : Also respect naming convensions for the routes and the variables.
-        [HttpPut("{request}")]
-        public HttpResponseMessage Presence([FromBody] MarkPresenceRequest request)
+        [HttpPut]
+        public HttpResponseMessage Presence([FromBody] MarkPresenceRequest markPresenceRequest)
         {
-            if (markPresence == null) throw new ArgumentNullException(nameof(markPresence));
+            if (markPresenceRequest == null) throw new ArgumentNullException(nameof(markPresenceRequest));
 
-            if (markPresence.StudentID != null && markPresence.ExamID != 0 && markPresence.Token != null)
+            if (markPresenceRequest.StudentID != null && markPresenceRequest.ExamID != 0 && markPresenceRequest.Token != null)
             {
-                _gradeRepo.MarkStudentPresent(markPresence.StudentID, markPresence.ExamID, markPresence.Token);
+                _gradeRepo.MarkStudentPresent(markPresenceRequest.StudentID, markPresenceRequest.ExamID, markPresenceRequest.Token);
                 return new HttpResponseMessage(HttpStatusCode.Accepted);
             }
             return new HttpResponseMessage(HttpStatusCode.GatewayTimeout);
