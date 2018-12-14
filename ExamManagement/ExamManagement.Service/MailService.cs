@@ -1,10 +1,7 @@
 ﻿using MailKit.Net.Smtp;
 using MimeKit;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ExamManagement.Core.Services
+namespace ExamManagement.Services
 {
     public static class MailService
     {

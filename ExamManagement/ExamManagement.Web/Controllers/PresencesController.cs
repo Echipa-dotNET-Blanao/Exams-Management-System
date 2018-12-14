@@ -1,4 +1,4 @@
-﻿using ExamManagement.Core.Interfaces;
+﻿using ExamManagement.Core.Interfaces.Repositories;
 using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
 using System;

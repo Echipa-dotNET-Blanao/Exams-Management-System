@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExamManagement.Infrastructure\ExamManagement.Infrastructure.csproj" />
+    <ProjectReference Include="..\ExamManagement.Services\ExamManagement.Services.csproj" />
   </ItemGroup>
 
 </Project>

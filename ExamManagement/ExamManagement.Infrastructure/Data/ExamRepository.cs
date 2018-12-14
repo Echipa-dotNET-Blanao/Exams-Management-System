@@ -1,9 +1,7 @@
 using System.Linq;
 using ExamManagement.Core.Entities;
-using ExamManagement.Core.Interfaces;
-using ExamManagement.Core.Services;
 using System;
-using System.Linq;
+using ExamManagement.Core.Interfaces.Repositories;
 
 namespace ExamManagement.Infrastructure.Data
 {
@@ -99,8 +97,9 @@ namespace ExamManagement.Infrastructure.Data
                                     select new { student, grade, course }).Distinct();
             foreach (var tuple in eligibleStudents)
             {
-                MailService.SendEmail(tuple.student.email, $"Your grade on {tuple.course.title}",
-                    $"Your paper has been graded with {tuple.grade.grade} points!");
+                //TODO: Move logic to Services
+                //MailService.SendEmail(tuple.student.email, $"Your grade on {tuple.course.title}",
+                    //$"Your paper has been graded with {tuple.grade.grade} points!");
             }
             _dbContext.SaveChanges();
         }
