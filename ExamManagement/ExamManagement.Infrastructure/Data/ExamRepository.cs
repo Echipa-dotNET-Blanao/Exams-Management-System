@@ -82,48 +82,7 @@ namespace ExamManagement.Infrastructure.Data
             _dbContext.SaveChanges();
         }
 
-        // Eliminate the separate functionality of Start/Close Exam 
-        // using the boolean parameter task 
-        // if task is TRUE than the Action taken by ExamManager
-        // is to set ExamStart, create and add the ExamToken
-        // otherwise the Action taken would be to CloseExam
-        public void ManageExam(int examId, bool task)
-        {
-            Exam exams = (from exam in _dbContext.Exams
-                          where exam.id == examId
-                          select exam).SingleOrDefault();
-            if(task)
-            {
-                string token = "";
-                Random r = new Random();
-                for (int i = 0; i < 8; i++)
-                {
-                    char c = ' ';
-                    int character = r.Next(0, 61);
-                    if (character <= 25)
-                    {
-                        c = (char)(65 + character);
-                    }
-                    else if (character <= 51)
-                    {
-                        c = (char)(97 + character - 26);
-                    }
-                    else
-                    {
-                        c = (char)(48 + character - 52);
-                    }
-                    token += c;
-                }
-                exams.started = true;
-                exams.token = token;
-
-            }
-            else
-            {
-                exams.finished = true;
-            }
-            _dbContext.SaveChanges();
-        }
+        
         public void PublishGrades(int examID)
         {
             var selectedExam = from exam in _dbContext.Exams
@@ -144,6 +103,22 @@ namespace ExamManagement.Infrastructure.Data
                     //$"Your paper has been graded with {tuple.grade.grade} points!");
             }
             _dbContext.SaveChanges();
+        }
+        // Eliminate the separate functionality of Start/Close Exam/Publish Grades 
+        public void ManageExam(int examId, ManageExamTask task)
+        {
+            switch (task)
+            {
+                case ManageExamTask.Start:
+                    StartExam(examId);
+                    break;
+                case ManageExamTask.End:
+                    CloseExam(examId);
+                    break;
+                case ManageExamTask.PublishGrades:
+                    PublishGrades(examId);
+                    break;
+            }
         }
     }
 }

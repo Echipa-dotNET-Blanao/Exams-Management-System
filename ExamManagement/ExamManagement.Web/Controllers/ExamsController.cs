@@ -29,18 +29,6 @@ namespace ExamManagement.Web.Controllers
 
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
-        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
-        //TODO : Also respect naming convensions for the routes and the variables.
-        [HttpPost]
-        [Route("set/publishGrades")]
-        public HttpResponseMessage PublishGrades([FromBody] PublishAllGradesRequest publishAllGradesRequest)
-        {
-            if (publishAllGradesRequest == null) throw new ArgumentNullException(nameof(publishAllGradesRequest));
-
-            _examRepository.PublishGrades(publishAllGradesRequest.ExamID);
-
-            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
-        }
 
     }
 }
