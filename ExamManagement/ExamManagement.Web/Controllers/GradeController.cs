@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
-using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces;
 using ExamManagement.Core.Requests;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExamManagement.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GradeController : ControllerBase
+    public class GradeController : Controller
     {
 
         private readonly IGradeRepository _gradeRepository;
@@ -23,28 +18,29 @@ namespace ExamManagement.Web.Controllers
             _gradeRepository = gradeRepository;
         }
 
-        //TODO : Set PATCH or PUT Method here
-        [HttpPost("set")]
-        public HttpResponseMessage SetGrade(SetGradeRequest setGradeRequest)
+        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
+        //TODO : Also respect naming convensions for the routes and the variables.
+        [HttpPut]
+        [Route("set/grade")]
+        public HttpResponseMessage SetGrade([FromBody] SetGradeRequest setGradeRequest)
         {
-            if (setGradeRequest == null)
-            {
-                return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
-            }
+            if (setGradeRequest == null) throw new ArgumentNullException(nameof(setGradeRequest));
+
             _gradeRepository.SetGrade(setGradeRequest.GradeID, setGradeRequest.Grade);
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
-        
-        //TODO : Replace with HttpGet, with /id route
-        [HttpPost("get")]
-        public ActionResult<Grade> GetGrade(GetGradeRequest getGradeRequest)
+        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
+        //TODO : Also respect naming convensions for the routes and the variables.
+        //TODO : Replace with HttpGet, with /id route || for the moment we will do without /id route :D TBD tomorrow
+        [HttpGet]
+        [Route("get/grade")]
+        public JsonResult GetGrade(string studentId, int examId)
         {
-            //if (getGradeRequest == null)
-            //{
-            //    return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
-            //}
+            if (studentId == null) throw new ArgumentNullException(nameof(studentId));
 
-            return _gradeRepository.GetGradeByStudentId(getGradeRequest.StudentID, getGradeRequest.ExamID);
+            if (examId <= 0) throw new ArgumentOutOfRangeException(nameof(examId));
+
+            return Json(_gradeRepository.GetGradeByStudentId(studentId, examId));
         }
     }
 }

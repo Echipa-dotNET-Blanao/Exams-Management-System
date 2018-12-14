@@ -21,60 +21,65 @@ namespace ExamManagement.Web.Controllers
         {
             _examRepository = examRepository;
         }
-
-        [HttpPost("CreateExam")]
-        public HttpResponseMessage CreateExam(CreateExamRequest createExamRequest)
+        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
+        //TODO : Also respect naming convensions for the routes and the variables.
+        [HttpPost]
+        [Route("set/createExam")]
+        public HttpResponseMessage CreateExam([FromBody] CreateExamRequest createExamRequest)
         {
-            if (createExamRequest == null)
-            {
-                return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
-            }
+            if (createExamRequest == null) throw new ArgumentNullException(nameof(createExamRequest));
+
             Exam tmpExam = new Exam(createExamRequest.CourseID, createExamRequest.ExamDate, createExamRequest.Room, createExamRequest.StartTime, createExamRequest.EndTime, createExamRequest.Type, createExamRequest.CorrectionScore);
+
             _examRepository.CreateExam(tmpExam);
 
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
 
-
-        [HttpPost("StartExam")]
-        public HttpResponseMessage StartExam(StartExamRequest startExamRequest)
+        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
+        //TODO : Also respect naming convensions for the routes and the variables.
+        [HttpPost]
+        [Route("set/startExam")]
+        public HttpResponseMessage StartExam([FromBody] StartExamRequest startExamRequest)
         {
-            if (startExamRequest == null)
-            {
-                return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
-            }
+            if (startExamRequest == null) throw new ArgumentNullException(nameof(startExamRequest));
+
             _examRepository.StartExam(startExamRequest.ExamID);
+
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
-
-        [HttpPost("EndExam")]
-        public HttpResponseMessage EndExam(EndExamRequest endExamRequest)
+        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
+        //TODO : Also respect naming convensions for the routes and the variables.
+        [HttpPost]
+        [Route("set/endExam")]
+        public HttpResponseMessage EndExam([FromBody] EndExamRequest endExamRequest)
         {
-            if (endExamRequest == null)
-            {
-                return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
-            }
+            if (endExamRequest == null) throw new ArgumentNullException(nameof(endExamRequest));
+
             _examRepository.CloseExam(endExamRequest.ExamID);
-            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
-        }
-        [HttpPost("SetGrades")]
-        public HttpResponseMessage SetGrades(SetGradeRequest setGradeRequest)
-        {
-            if (setGradeRequest == null)
-            {
-                return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
-            }
-            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
-        }
 
-        [HttpPost("PublishGrades")]
-        public HttpResponseMessage PublishGrades(PublishAllGradesRequest publishAllGradesRequest)
+            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+        }
+        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
+        //TODO : Also respect naming convensions for the routes and the variables.
+        [HttpPost]
+        [Route("set/studGrades")]
+        public HttpResponseMessage SetGrades([FromBody] SetGradeRequest setGradeRequest)
         {
-            if (publishAllGradesRequest == null)
-            {
-                return new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
-            }
+            if (setGradeRequest == null) throw new ArgumentNullException(nameof(setGradeRequest));
+
+            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+        }
+        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
+        //TODO : Also respect naming convensions for the routes and the variables.
+        [HttpPost]
+        [Route("set/publishGrades")]
+        public HttpResponseMessage PublishGrades([FromBody] PublishAllGradesRequest publishAllGradesRequest)
+        {
+            if (publishAllGradesRequest == null) throw new ArgumentNullException(nameof(publishAllGradesRequest));
+
             _examRepository.PublishGrades(publishAllGradesRequest.ExamID);
+
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
 
