@@ -1,6 +1,6 @@
 using ExamManagement.Core.Entities;
 
-namespace ExamManagement.Core.Interfaces
+namespace ExamManagement.Core.Interfaces.Repositories
 {
     public interface IExamRepository
     {

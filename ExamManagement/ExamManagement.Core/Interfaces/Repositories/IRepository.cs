@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ExamManagement.Core.SharedKernel;
 
-namespace ExamManagement.Core.Interfaces
+namespace ExamManagement.Core.Interfaces.Repositories
 {
     public interface IRepository
     {

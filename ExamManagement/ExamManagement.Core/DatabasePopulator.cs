@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using ExamManagement.Core.Entities;
-using ExamManagement.Core.Interfaces;
+using ExamManagement.Core.Interfaces.Repositories;
 
 namespace ExamManagement.Core
 {
