@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net.Http;
-using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces.Repositories;
 using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
@@ -9,27 +8,13 @@ namespace ExamManagement.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TeachersController : ControllerBase
+    public class ExamsController : ControllerBase
     {
         private readonly IExamRepository _examRepository;
 
-        public TeachersController(IExamRepository examRepository)
+        public ExamsController(IExamRepository examRepository)
         {
             _examRepository = examRepository;
-        }
-        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
-        //TODO : Also respect naming convensions for the routes and the variables.
-        [HttpPost]
-        [Route("set/createExam")]
-        public HttpResponseMessage CreateExam([FromBody] CreateExamRequest createExamRequest)
-        {
-            if (createExamRequest == null) throw new ArgumentNullException(nameof(createExamRequest));
-
-            Exam tmpExam = new Exam(createExamRequest.CourseID, createExamRequest.ExamDate, createExamRequest.Room, createExamRequest.StartTime, createExamRequest.EndTime, createExamRequest.Type, createExamRequest.CorrectionScore);
-
-            _examRepository.CreateExam(tmpExam);
-
-            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
 
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
