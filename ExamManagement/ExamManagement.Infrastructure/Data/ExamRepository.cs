@@ -18,8 +18,6 @@ namespace ExamManagement.Infrastructure.Data
         public void CreateExam(Exam exam)
         {
 
-            int index = 0;
-
             _dbContext.Set<Exam>().Add(exam);
 
             var assignedStudents = (from students in _dbContext.Students
@@ -82,6 +80,7 @@ namespace ExamManagement.Infrastructure.Data
             _dbContext.SaveChanges();
         }
 
+        
         public void PublishGrades(int examID)
         {
             var selectedExam = from exam in _dbContext.Exams
@@ -102,6 +101,22 @@ namespace ExamManagement.Infrastructure.Data
                     //$"Your paper has been graded with {tuple.grade.grade} points!");
             }
             _dbContext.SaveChanges();
+        }
+        // Eliminate the separate functionality of Start/Close Exam/Publish Grades 
+        public void ManageExam(int examId, ManageExamTask task)
+        {
+            switch (task)
+            {
+                case ManageExamTask.Start:
+                    StartExam(examId);
+                    break;
+                case ManageExamTask.End:
+                    CloseExam(examId);
+                    break;
+                case ManageExamTask.PublishGrades:
+                    PublishGrades(examId);
+                    break;
+            }
         }
     }
 }
