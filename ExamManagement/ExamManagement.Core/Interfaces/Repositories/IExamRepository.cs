@@ -4,7 +4,9 @@ namespace ExamManagement.Core.Interfaces.Repositories
 {
     public enum ManageExamTask
     {
-        Start, End, PublishGrades
+        Start = 0,
+        End = 1,
+        PublishGrades = 2
     }
     public interface IExamRepository
     {
