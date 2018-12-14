@@ -27,6 +27,9 @@ namespace ExamManagement.Web
 
         public IConfiguration Configuration { get; }
 
+        //TODO: https://www.c-sharpcorner.com/article/onion-architecture-in-asp-net-core-mvc/
+        //TODO: Our architecture is 3 layered when Onion is at leaste 4 layered.
+        //TODO: Maybe we should reconsider and add another layer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {

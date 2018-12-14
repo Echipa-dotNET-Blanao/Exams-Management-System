@@ -19,10 +19,8 @@ namespace ExamManagement.Web.Controllers
         }
 
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
-        //TODO : Also respect naming convensions for the routes and the variables.
         [HttpPut]
-        [Route("set/grade")]
-        public HttpResponseMessage SetGrade([FromBody] SetGradeRequest setGradeRequest)
+        public HttpResponseMessage UpdateGrade([FromBody] UpdateGradeRequest setGradeRequest)
         {
             if (setGradeRequest == null) throw new ArgumentNullException(nameof(setGradeRequest));
 
@@ -30,11 +28,8 @@ namespace ExamManagement.Web.Controllers
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
-        //TODO : Also respect naming convensions for the routes and the variables.
-        //TODO : Replace with HttpGet, with /id route || for the moment we will do without /id route :D TBD tomorrow
-        [HttpGet]
-        [Route("get/grade")]
-        public JsonResult GetGrade(string studentId, int examId)
+        [HttpGet("{examId}/{studentId}")]
+        public JsonResult GetGrade(int examId, string studentId)
         {
             if (studentId == null) throw new ArgumentNullException(nameof(studentId));
 

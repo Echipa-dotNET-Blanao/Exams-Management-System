@@ -60,7 +60,7 @@ namespace ExamManagement.Web.Controllers
         //TODO : Also respect naming convensions for the routes and the variables.
         [HttpPost]
         [Route("set/studGrades")]
-        public HttpResponseMessage SetGrades([FromBody] SetGradeRequest setGradeRequest)
+        public HttpResponseMessage SetGrades([FromBody] UpdateGradeRequest setGradeRequest)
         {
             if (setGradeRequest == null) throw new ArgumentNullException(nameof(setGradeRequest));
 

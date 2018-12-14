@@ -18,21 +18,6 @@ namespace ExamManagement.Web.Controllers
         }
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
         //TODO : Also respect naming convensions for the routes and the variables.
-        [HttpPost]
-        [Route("set/presence")]
-        public HttpResponseMessage Presence([FromBody] MarkPresenceRequest markPresence)
-        {
-            if (markPresence == null) throw new ArgumentNullException(nameof(markPresence));
-
-            if (markPresence.StudentID != null && markPresence.ExamID != 0 && markPresence.Token != null)
-            {
-                _gradeRepo.MarkStudentPresent(markPresence.StudentID, markPresence.ExamID, markPresence.Token);
-                return new HttpResponseMessage(HttpStatusCode.Accepted);
-            }
-            return new HttpResponseMessage(HttpStatusCode.GatewayTimeout);
-        }
-        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
-        //TODO : Also respect naming convensions for the routes and the variables.
         [HttpGet]
         [Route("get/yourGrades")]
         public JsonResult GetYourGrade(string studentId, int examId)
