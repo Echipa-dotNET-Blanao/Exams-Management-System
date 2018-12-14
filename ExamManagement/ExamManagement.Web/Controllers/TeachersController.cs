@@ -9,11 +9,11 @@ namespace ExamManagement.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TeacherController : ControllerBase
+    public class TeachersController : ControllerBase
     {
         private readonly IExamRepository _examRepository;
 
-        public TeacherController(IExamRepository examRepository)
+        public TeachersController(IExamRepository examRepository)
         {
             _examRepository = examRepository;
         }
@@ -53,16 +53,6 @@ namespace ExamManagement.Web.Controllers
             if (endExamRequest == null) throw new ArgumentNullException(nameof(endExamRequest));
 
             _examRepository.CloseExam(endExamRequest.ExamID);
-
-            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
-        }
-        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
-        //TODO : Also respect naming convensions for the routes and the variables.
-        [HttpPost]
-        [Route("set/studGrades")]
-        public HttpResponseMessage SetGrades([FromBody] UpdateGradeRequest setGradeRequest)
-        {
-            if (setGradeRequest == null) throw new ArgumentNullException(nameof(setGradeRequest));
 
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
