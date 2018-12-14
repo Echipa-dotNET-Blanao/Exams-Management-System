@@ -11,11 +11,11 @@ namespace ExamManagement.Web.Controllers
     public class GradesController : Controller
     {
 
-        private readonly IGradeRepository _gradeRepository;
+        private readonly Core.Interfaces.Services.IGradeService _gradeService;
 
-        public GradesController(IGradeRepository gradeRepository)
+        public GradesController(Core.Interfaces.Services.IGradeService gradeService)
         {
-            _gradeRepository = gradeRepository;
+            _gradeService = gradeService;
         }
 
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
@@ -24,18 +24,17 @@ namespace ExamManagement.Web.Controllers
         {
             if (setGradeRequest == null) throw new ArgumentNullException(nameof(setGradeRequest));
 
-            _gradeRepository.SetGrade(setGradeRequest.GradeID, setGradeRequest.Grade);
+            _gradeService.SetGrade(setGradeRequest.GradeID, setGradeRequest.Grade);
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
         [HttpGet]
-        public JsonResult GetGrade([FromBody]GetGradeRequest getGradeRequest)
+        public JsonResult GetGrade([FromQuery]GetGradeRequest getGradeRequest)
         {
             if (getGradeRequest.StudentID == null) throw new ArgumentNullException(nameof(getGradeRequest.StudentID));
 
             if (getGradeRequest.ExamID <= 0) throw new ArgumentOutOfRangeException(nameof(getGradeRequest.ExamID));
-
-            return Json(_gradeRepository.GetGradeByStudentId(getGradeRequest.StudentID, getGradeRequest.ExamID));
+            return Json(_gradeService.GetGradeByStudentId(getGradeRequest.StudentID, getGradeRequest.ExamID));
         }
     }
 }

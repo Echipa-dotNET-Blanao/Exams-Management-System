@@ -6,6 +6,6 @@ namespace ExamManagement.Core.Interfaces.Services
 {
     public interface IMailService
     {
-        public void SendEmail(string toAdress, string subject, string body);
+        void SendEmail(string toAdress, string subject, string body);
     }
 }
