@@ -4,7 +4,8 @@ using System.Text;
 
 namespace ExamManagement.Core.Interfaces.Services
 {
-    public interface IGradeService
+    public interface IMailService
     {
+        public void SendEmail(string toAdress, string subject, string body);
     }
 }

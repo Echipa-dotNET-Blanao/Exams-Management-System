@@ -3,9 +3,9 @@ using MimeKit;
 
 namespace ExamManagement.Services
 {
-    public static class MailService
+    public class MailService : Core.Interfaces.Services.IMailService
     {
-        public static void SendEmail(string toAdress, string subject, string body)
+        public void SendEmail(string toAdress, string subject, string body)
         {
             string FromAddress = "fii.exam.management@gmail.com";
 
