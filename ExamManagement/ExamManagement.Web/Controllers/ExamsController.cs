@@ -20,24 +20,12 @@ namespace ExamManagement.Web.Controllers
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
         //TODO : Also respect naming convensions for the routes and the variables.
         [HttpPost]
-        [Route("set/startExam")]
-        public HttpResponseMessage StartExam([FromBody] StartExamRequest startExamRequest)
+        [Route("set/manageExam")]
+        public HttpResponseMessage ManageExam([FromBody] ManageExamRequest manageExamRequest)
         {
-            if (startExamRequest == null) throw new ArgumentNullException(nameof(startExamRequest));
+            if (manageExamRequest == null) throw new ArgumentNullException(nameof(manageExamRequest));
 
-            _examRepository.StartExam(startExamRequest.ExamID);
-
-            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
-        }
-        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
-        //TODO : Also respect naming convensions for the routes and the variables.
-        [HttpPost]
-        [Route("set/endExam")]
-        public HttpResponseMessage EndExam([FromBody] EndExamRequest endExamRequest)
-        {
-            if (endExamRequest == null) throw new ArgumentNullException(nameof(endExamRequest));
-
-            _examRepository.CloseExam(endExamRequest.ExamID);
+            _examRepository.ManageExam(manageExamRequest.ExamID,manageExamRequest.Task);
 
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }

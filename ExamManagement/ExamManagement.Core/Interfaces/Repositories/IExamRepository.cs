@@ -8,5 +8,6 @@ namespace ExamManagement.Core.Interfaces.Repositories
         void StartExam(int examID);
         void CloseExam(int examID);
         void PublishGrades(int examID);
+        void ManageExam(int examID, bool task);
     }
 }

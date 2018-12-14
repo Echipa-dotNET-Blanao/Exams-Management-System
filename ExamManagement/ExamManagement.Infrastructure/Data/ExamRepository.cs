@@ -87,7 +87,7 @@ namespace ExamManagement.Infrastructure.Data
         // if task is TRUE than the Action taken by ExamManager
         // is to set ExamStart, create and add the ExamToken
         // otherwise the Action taken would be to CloseExam
-        public void ManageExams(int examId, bool task)
+        public void ManageExam(int examId, bool task)
         {
             Exam exams = (from exam in _dbContext.Exams
                           where exam.id == examId
