@@ -18,8 +18,6 @@ namespace ExamManagement.Infrastructure.Data
         public void CreateExam(Exam exam)
         {
 
-            int index = 0;
-
             _dbContext.Set<Exam>().Add(exam);
 
             var assignedStudents = (from students in _dbContext.Students

@@ -19,8 +19,8 @@ namespace ExamManagement.Web.Controllers
 
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
         //TODO : Also respect naming convensions for the routes and the variables.
-        [HttpPost]
-        [Route("set/manageExam")]
+        [HttpPut]
+        [Route("update/manageExam")]
         public HttpResponseMessage ManageExam([FromBody] ManageExamRequest manageExamRequest)
         {
             if (manageExamRequest == null) throw new ArgumentNullException(nameof(manageExamRequest));
