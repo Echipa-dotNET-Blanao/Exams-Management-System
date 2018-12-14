@@ -11,9 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{138818C3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExamManagement.Tests", "ExamManagement.Tests\ExamManagement.Tests.csproj", "{FFE7D8AD-7D25-4DF0-8A75-587DB211D1B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamManagement.Core", "ExamManagement.Core\ExamManagement.Core.csproj", "{9202D9ED-8A16-43C8-8F4D-A09FFBBA12F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExamManagement.Core", "ExamManagement.Core\ExamManagement.Core.csproj", "{9202D9ED-8A16-43C8-8F4D-A09FFBBA12F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamManagement.Web", "ExamManagement.Web\ExamManagement.Web.csproj", "{ECFA239A-057F-4D59-947D-E3704E2A8F78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExamManagement.Web", "ExamManagement.Web\ExamManagement.Web.csproj", "{ECFA239A-057F-4D59-947D-E3704E2A8F78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamManagement.Services", "ExamManagement.Services\ExamManagement.Services.csproj", "{6C72B42F-756A-4F07-8BA8-A3CC8CAA8E79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,14 @@ Global
 		{ECFA239A-057F-4D59-947D-E3704E2A8F78}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ECFA239A-057F-4D59-947D-E3704E2A8F78}.Release|x86.ActiveCfg = Release|Any CPU
 		{ECFA239A-057F-4D59-947D-E3704E2A8F78}.Release|x86.Build.0 = Release|Any CPU
+		{6C72B42F-756A-4F07-8BA8-A3CC8CAA8E79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C72B42F-756A-4F07-8BA8-A3CC8CAA8E79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C72B42F-756A-4F07-8BA8-A3CC8CAA8E79}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6C72B42F-756A-4F07-8BA8-A3CC8CAA8E79}.Debug|x86.Build.0 = Debug|Any CPU
+		{6C72B42F-756A-4F07-8BA8-A3CC8CAA8E79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C72B42F-756A-4F07-8BA8-A3CC8CAA8E79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C72B42F-756A-4F07-8BA8-A3CC8CAA8E79}.Release|x86.ActiveCfg = Release|Any CPU
+		{6C72B42F-756A-4F07-8BA8-A3CC8CAA8E79}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +74,7 @@ Global
 		{FFE7D8AD-7D25-4DF0-8A75-587DB211D1B4} = {138818C3-952B-46A9-BD79-95E18EB0C027}
 		{9202D9ED-8A16-43C8-8F4D-A09FFBBA12F2} = {6EA18B73-75BF-48B0-84C2-FA6C8243819F}
 		{ECFA239A-057F-4D59-947D-E3704E2A8F78} = {6EA18B73-75BF-48B0-84C2-FA6C8243819F}
+		{6C72B42F-756A-4F07-8BA8-A3CC8CAA8E79} = {6EA18B73-75BF-48B0-84C2-FA6C8243819F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9067866F-E851-4D58-A7EB-D85F408FADED}

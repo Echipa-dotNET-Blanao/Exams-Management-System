@@ -1,28 +1,26 @@
 ﻿using System;
 using System.Net.Http;
 using ExamManagement.Core.Interfaces;
-using ExamManagement.Core.Requests;
+using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExamManagement.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GradeController : Controller
+    public class GradesController : Controller
     {
 
         private readonly IGradeRepository _gradeRepository;
 
-        public GradeController(IGradeRepository gradeRepository)
+        public GradesController(IGradeRepository gradeRepository)
         {
             _gradeRepository = gradeRepository;
         }
 
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
-        //TODO : Also respect naming convensions for the routes and the variables.
         [HttpPut]
-        [Route("set/grade")]
-        public HttpResponseMessage SetGrade([FromBody] SetGradeRequest setGradeRequest)
+        public HttpResponseMessage UpdateGrade([FromBody] UpdateGradeRequest setGradeRequest)
         {
             if (setGradeRequest == null) throw new ArgumentNullException(nameof(setGradeRequest));
 
@@ -30,17 +28,14 @@ namespace ExamManagement.Web.Controllers
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
-        //TODO : Also respect naming convensions for the routes and the variables.
-        //TODO : Replace with HttpGet, with /id route || for the moment we will do without /id route :D TBD tomorrow
         [HttpGet]
-        [Route("get/grade")]
-        public JsonResult GetGrade(string studentId, int examId)
+        public JsonResult GetGrade([FromBody]GetGradeRequest getGradeRequest)
         {
-            if (studentId == null) throw new ArgumentNullException(nameof(studentId));
+            if (getGradeRequest.StudentID == null) throw new ArgumentNullException(nameof(getGradeRequest.StudentID));
 
-            if (examId <= 0) throw new ArgumentOutOfRangeException(nameof(examId));
+            if (getGradeRequest.ExamID <= 0) throw new ArgumentOutOfRangeException(nameof(getGradeRequest.ExamID));
 
-            return Json(_gradeRepository.GetGradeByStudentId(studentId, examId));
+            return Json(_gradeRepository.GetGradeByStudentId(getGradeRequest.StudentID, getGradeRequest.ExamID));
         }
     }
 }

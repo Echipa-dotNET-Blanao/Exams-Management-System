@@ -1,6 +1,6 @@
-﻿namespace ExamManagement.Core.Requests
+﻿namespace ExamManagement.Web.Requests
 {
-    public class SetGradeRequest
+    public class UpdateGradeRequest
     {
         public int GradeID { get; set; }
         public float Grade { get; set; }
