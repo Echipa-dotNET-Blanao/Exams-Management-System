@@ -8,7 +8,7 @@ namespace ExamManagement.Core.Entities
     {
         [Key]
         public int id { set; get; }
-        public Byte binaryData { set; get; }
+        public byte binaryData { set; get; }
         
     }
 }
