@@ -23,6 +23,7 @@ namespace ExamManagement.Web.Controllers
             _gradeRepository = gradeRepository;
         }
 
+        //TODO : Set PATCH or PUT Method here
         [HttpPost("set")]
         public HttpResponseMessage SetGrade(SetGradeRequest setGradeRequest)
         {
@@ -33,6 +34,8 @@ namespace ExamManagement.Web.Controllers
             _gradeRepository.SetGrade(setGradeRequest.GradeID, setGradeRequest.Grade);
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
+        
+        //TODO : Replace with HttpGet, with /id route
         [HttpPost("get")]
         public ActionResult<Grade> GetGrade(GetGradeRequest getGradeRequest)
         {
