@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces;
-using ExamManagement.Core.Requests;
-using Microsoft.AspNetCore.Http;
+using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExamManagement.Web.Controllers

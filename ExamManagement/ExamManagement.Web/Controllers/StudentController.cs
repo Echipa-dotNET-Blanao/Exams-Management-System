@@ -2,8 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using ExamManagement.Core.Interfaces;
-using ExamManagement.Core.Requests;
-using ExamManagement.Infrastructure.Data;
+using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExamManagement.Web.Controllers

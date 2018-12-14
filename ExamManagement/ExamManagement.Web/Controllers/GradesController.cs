@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Net.Http;
 using ExamManagement.Core.Interfaces;
-using ExamManagement.Core.Requests;
+using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExamManagement.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GradeController : Controller
+    public class GradesController : Controller
     {
 
         private readonly IGradeRepository _gradeRepository;
 
-        public GradeController(IGradeRepository gradeRepository)
+        public GradesController(IGradeRepository gradeRepository)
         {
             _gradeRepository = gradeRepository;
         }
