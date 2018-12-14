@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ExamManagement.Core.Requests
+namespace ExamManagement.Web.Requests
 {
     public class CreateExamRequest
     {

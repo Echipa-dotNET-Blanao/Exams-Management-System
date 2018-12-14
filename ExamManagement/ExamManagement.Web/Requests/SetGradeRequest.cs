@@ -1,4 +1,4 @@
-﻿namespace ExamManagement.Core.Requests
+﻿namespace ExamManagement.Web.Requests
 {
     public class SetGradeRequest
     {
