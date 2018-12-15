@@ -33,9 +33,9 @@ namespace ExamManagement.Infrastructure.Data
             return gradeQuery.ToList();
         }
 
-        public void Add(Grade entity)
+        public void Add(Grade grade)
         {
-            _dbContext.Add(entity);
+            _dbContext.Add(grade);
             _dbContext.SaveChanges();
         }
 
@@ -58,6 +58,7 @@ namespace ExamManagement.Infrastructure.Data
         {
             Grade grade = GetById(id);
             _dbContext.Remove(grade);
+            _dbContext.SaveChanges();
         }
     }
 

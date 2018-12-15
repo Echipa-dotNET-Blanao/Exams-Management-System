@@ -1,19 +1,14 @@
 using ExamManagement.Core.Entities;
+using System.Collections.Generic;
 
 namespace ExamManagement.Core.Interfaces.Repositories
 {
-    public enum ManageExamTask
-    {
-        Start = 0,
-        End = 1,
-        PublishGrades = 2
-    }
     public interface IExamRepository
     {
-        void CreateExam(Exam exam);
-        void StartExam(int examID);
-        void CloseExam(int examID);
-        void PublishGrades(int examID);
-        void ManageExam(int examID, ManageExamTask task);
+        Exam GetById(int id);
+        List<Exam> GetAll();
+        void Add(Exam exam);
+        void Update(int id, Exam exam);
+        void Delete(int id);
     }
 }

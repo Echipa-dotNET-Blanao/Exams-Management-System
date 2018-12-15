@@ -10,22 +10,35 @@ namespace ExamManagement.Web.Controllers
     [ApiController]
     public class ExamsController : ControllerBase
     {
-        private readonly IExamRepository _examRepository;
+        private readonly Core.Interfaces.Services.IExamService _examService;
 
-        public ExamsController(IExamRepository examRepository)
+        public ExamsController(Core.Interfaces.Services.IExamService examService)
         {
-            _examRepository = examRepository;
+            _examService = examService;
+        }
+
+        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
+        //TODO : Also respect naming convensions for the routes and the variables.
+        [HttpPost]
+        public HttpResponseMessage CreateExam([FromQuery] CreateExamRequest createExamRequest)
+        {
+            if (createExamRequest == null) throw new ArgumentNullException(nameof(createExamRequest));
+
+            _examService.CreateExam(new Core.Entities.Exam(createExamRequest.CourseID, createExamRequest.ExamDate, createExamRequest.Room,
+                createExamRequest.StartTime, createExamRequest.EndTime, createExamRequest.CorrectionScorePostDate, createExamRequest.Type,
+                createExamRequest.CorrectionScore));
+
+            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
 
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
         //TODO : Also respect naming convensions for the routes and the variables.
         [HttpPut]
-        [Route("update/manageExam")]
-        public HttpResponseMessage ManageExam([FromBody] ManageExamRequest manageExamRequest)
+        public HttpResponseMessage ManageExam([FromQuery] ManageExamRequest manageExamRequest)
         {
             if (manageExamRequest == null) throw new ArgumentNullException(nameof(manageExamRequest));
 
-            _examRepository.ManageExam(manageExamRequest.ExamID,manageExamRequest.Task);
+            _examService.ManageExam(manageExamRequest.ExamID, manageExamRequest.Task);
 
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
