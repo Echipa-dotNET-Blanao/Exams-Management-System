@@ -22,8 +22,6 @@ namespace ExamManagement.Web.Controllers
         [HttpPut]
         public HttpResponseMessage UpdateGrade([FromBody] UpdateGradeRequest setGradeRequest)
         {
-            if (setGradeRequest == null) throw new ArgumentNullException(nameof(setGradeRequest));
-
             _gradeService.SetGrade(setGradeRequest.GradeID, setGradeRequest.Grade);
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
@@ -31,9 +29,6 @@ namespace ExamManagement.Web.Controllers
         [HttpGet]
         public JsonResult GetGrade([FromQuery] GetGradeRequest getGradeRequest)
         {
-            if (getGradeRequest.StudentID == null) throw new ArgumentNullException(nameof(getGradeRequest.StudentID));
-
-            if (getGradeRequest.ExamID <= 0) throw new ArgumentOutOfRangeException(nameof(getGradeRequest.ExamID));
             return Json(_gradeService.GetGradeByStudentId(getGradeRequest.StudentID, getGradeRequest.ExamID));
         }
     }
