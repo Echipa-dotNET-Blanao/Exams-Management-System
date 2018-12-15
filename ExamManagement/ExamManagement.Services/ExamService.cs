@@ -1,17 +1,19 @@
 ﻿using ExamManagement.Core.Entities;
+using ExamManagement.Core.Interfaces.Repositories;
+using ExamManagement.Core.Interfaces.Services;
 namespace ExamManagement.Services
 {
     public class ExamService : Core.Interfaces.Services.IExamService
     {
-        private Core.Interfaces.Repositories.IExamRepository _examRepository;
-        private Core.Interfaces.Repositories.IGradeRepository _gradeRepostory;
-        private Core.Interfaces.Repositories.ICourseRepository _courseRepository;
-        private Core.Interfaces.Repositories.IStudentRepository _studentRepository;
-        private Core.Interfaces.Services.IMailService _mailService;
+        private IExamRepository _examRepository;
+        private IGradeRepository _gradeRepostory;
+        private ICourseRepository _courseRepository;
+        private IStudentRepository _studentRepository;
+        private IMailService _mailService;
 
-        public ExamService(Core.Interfaces.Repositories.IExamRepository examRepository, Core.Interfaces.Repositories.IGradeRepository gradeRepository,
-            Core.Interfaces.Repositories.ICourseRepository courseRepository, Core.Interfaces.Repositories.IStudentRepository studentRepository,
-            Core.Interfaces.Services.IMailService mailService)
+        public ExamService(IExamRepository examRepository, IGradeRepository gradeRepository,
+            ICourseRepository courseRepository, IStudentRepository studentRepository,
+            IMailService mailService)
         {
             _examRepository = examRepository;
             _gradeRepostory = gradeRepository;
