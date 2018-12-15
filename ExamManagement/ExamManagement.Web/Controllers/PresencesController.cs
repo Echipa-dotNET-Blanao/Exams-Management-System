@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net;
 using System.Net.Http;
+using ExamManagement.Core.Interfaces.Services;
 
 namespace ExamManagement.Web.Controllers
 {
@@ -11,8 +12,8 @@ namespace ExamManagement.Web.Controllers
     [ApiController]
     public class PresencesController : ControllerBase
     {
-        private readonly Core.Interfaces.Services.IPresenceService _presenceService;
-        public PresencesController(Core.Interfaces.Services.IPresenceService presenceService)
+        private readonly IPresenceService _presenceService;
+        public PresencesController(IPresenceService presenceService)
         {
             _presenceService = presenceService;
         }

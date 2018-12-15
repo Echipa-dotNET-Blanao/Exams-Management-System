@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net.Http;
-using ExamManagement.Core.Interfaces.Repositories;
+using ExamManagement.Core.Interfaces.Services;
 using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +10,9 @@ namespace ExamManagement.Web.Controllers
     [ApiController]
     public class ExamsController : ControllerBase
     {
-        private readonly Core.Interfaces.Services.IExamService _examService;
+        private readonly IExamService _examService;
 
-        public ExamsController(Core.Interfaces.Services.IExamService examService)
+        public ExamsController(IExamService examService)
         {
             _examService = examService;
         }

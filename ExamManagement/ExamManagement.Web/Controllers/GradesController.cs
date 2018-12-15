@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net.Http;
-using ExamManagement.Core.Interfaces.Repositories;
+using ExamManagement.Core.Interfaces.Services;
 using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +11,9 @@ namespace ExamManagement.Web.Controllers
     public class GradesController : Controller
     {
 
-        private readonly Core.Interfaces.Services.IGradeService _gradeService;
+        private readonly IGradeService _gradeService;
 
-        public GradesController(Core.Interfaces.Services.IGradeService gradeService)
+        public GradesController(IGradeService gradeService)
         {
             _gradeService = gradeService;
         }
@@ -29,7 +29,7 @@ namespace ExamManagement.Web.Controllers
         }
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
         [HttpGet]
-        public JsonResult GetGrade([FromQuery]GetGradeRequest getGradeRequest)
+        public JsonResult GetGrade([FromQuery] GetGradeRequest getGradeRequest)
         {
             if (getGradeRequest.StudentID == null) throw new ArgumentNullException(nameof(getGradeRequest.StudentID));
 

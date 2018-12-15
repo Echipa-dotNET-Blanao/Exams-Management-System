@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces.Repositories;
-using ExamManagement.Core.SharedKernel;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExamManagement.Infrastructure.Data
