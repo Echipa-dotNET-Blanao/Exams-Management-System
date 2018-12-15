@@ -22,12 +22,9 @@ namespace ExamManagement.Web.Controllers
         [HttpPost]
         public HttpResponseMessage CreateExam([FromQuery] CreateExamRequest createExamRequest)
         {
-            if (createExamRequest == null) throw new ArgumentNullException(nameof(createExamRequest));
-
             _examService.CreateExam(new Core.Entities.Exam(createExamRequest.CourseID, createExamRequest.ExamDate, createExamRequest.Room,
                 createExamRequest.StartTime, createExamRequest.EndTime, createExamRequest.CorrectionScorePostDate, createExamRequest.Type,
                 createExamRequest.CorrectionScore));
-
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
 
@@ -36,10 +33,7 @@ namespace ExamManagement.Web.Controllers
         [HttpPut]
         public HttpResponseMessage ManageExam([FromQuery] ManageExamRequest manageExamRequest)
         {
-            if (manageExamRequest == null) throw new ArgumentNullException(nameof(manageExamRequest));
-
             _examService.ManageExam(manageExamRequest.ExamID, manageExamRequest.Task);
-
             return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
         }
 

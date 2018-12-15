@@ -1,6 +1,8 @@
 ﻿using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces.Repositories;
 using ExamManagement.Core.Interfaces.Services;
+using ExamManagement.Core.Interfaces.Enums;
+using System;
 namespace ExamManagement.Services
 {
     public class ExamService : Core.Interfaces.Services.IExamService
@@ -23,6 +25,7 @@ namespace ExamManagement.Services
         }
         public void CreateExam(Exam exam)
         {
+            if (_examRepository.GetById(exam.id) != null) throw new ArgumentOutOfRangeException();
             _examRepository.Add(exam);
 
             foreach (var stud in _studentRepository.GetAll())
@@ -42,6 +45,10 @@ namespace ExamManagement.Services
         public void StartExam(int examId)
         {
             Exam exam = _examRepository.GetById(examId);
+
+            if (exam == null) throw new ArgumentOutOfRangeException();
+            if (exam.started) throw new ArgumentOutOfRangeException();
+
             string token = "";
             System.Random r = new System.Random();
             for (int i = 0; i < 8; i++)
@@ -70,6 +77,11 @@ namespace ExamManagement.Services
         public void CloseExam(int examId)
         {
             Exam exam = _examRepository.GetById(examId);
+
+            if (exam == null) throw new ArgumentOutOfRangeException();
+            if (!exam.started) throw new ArgumentOutOfRangeException();
+            if (exam.finished) throw new ArgumentOutOfRangeException();
+
             exam.finished = true;
             _examRepository.Update(exam.id, exam);
         }
@@ -78,6 +90,11 @@ namespace ExamManagement.Services
         public void PublishGrades(int examID)
         {
             Exam selectedExam = _examRepository.GetById(examID);
+
+            if (selectedExam == null) throw new ArgumentOutOfRangeException();
+            if (!selectedExam.started) throw new ArgumentOutOfRangeException();
+            if (!selectedExam.finished) throw new ArgumentOutOfRangeException();
+
             selectedExam.gradesPublished = true;
             foreach (var student in _studentRepository.GetAll())
             {
@@ -98,17 +115,20 @@ namespace ExamManagement.Services
             }
         }
         // Eliminate the separate functionality of Start/Close Exam/Publish Grades 
-        public void ManageExam(int examId, Core.Interfaces.Enums.ManageExamTask task)
+        public void ManageExam(int examId, ManageExamTask task)
         {
+            if (_examRepository.GetById(examId) == null) throw new ArgumentOutOfRangeException();
+            if (!(task == ManageExamTask.Start || task == ManageExamTask.End || task == ManageExamTask.PublishGrades))
+                throw new ArgumentOutOfRangeException();
             switch (task)
             {
-                case Core.Interfaces.Enums.ManageExamTask.Start:
+                case ManageExamTask.Start:
                     StartExam(examId);
                     break;
-                case Core.Interfaces.Enums.ManageExamTask.End:
+                case ManageExamTask.End:
                     CloseExam(examId);
                     break;
-                case Core.Interfaces.Enums.ManageExamTask.PublishGrades:
+                case ManageExamTask.PublishGrades:
                     PublishGrades(examId);
                     break;
             }
