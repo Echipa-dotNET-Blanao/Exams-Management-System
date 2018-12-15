@@ -7,7 +7,7 @@ namespace ExamManagement.Core.Entities
     public class Exam
     {
 
-        public Exam(int courseId, DateTime examDate, string room, DateTime startTime, DateTime endTime,
+        public Exam(int courseId, DateTime examDate, string room, DateTime startTime, DateTime endTime, DateTime reevaluationEndDate,
             char type, bool correctionScorePublished)
         {
             this.id = id;
@@ -18,6 +18,7 @@ namespace ExamManagement.Core.Entities
             this.endTime = endTime;
             this.type = type;
             this.correctionScorePublished = correctionScorePublished;
+            this.reevaluationEndDate = reevaluationEndDate;
         }
         [Key]
         public int id { set; get; }
@@ -26,6 +27,7 @@ namespace ExamManagement.Core.Entities
         public string room { set; get; }
         public DateTime startTime { set; get; }
         public DateTime endTime { set; get; }
+        public DateTime reevaluationEndDate { set; get; }
         public char type { set; get; }
         public bool started { set; get; }
         public string token { set; get; }

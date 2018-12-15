@@ -34,7 +34,13 @@ namespace ExamManagement.Web
                     }));
             services.AddScoped<DbContext, AppDbContext>();
             services.AddTransient<IGradeRepository, GradeRepository>();
+            services.AddTransient<IStudentRepository, StudentRepository>();
+            services.AddTransient<ICourseRepository, CourseRepository>();
             services.AddTransient<IExamRepository, ExamRepository>();
+            services.AddScoped<Core.Interfaces.Services.IMailService, Services.MailService>();
+            services.AddScoped<Core.Interfaces.Services.IExamService, Services.ExamService>();
+            services.AddScoped<Core.Interfaces.Services.IGradeService, Services.GradeService>();
+            services.AddScoped<Core.Interfaces.Services.IPresenceService, Services.PresenceService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             //TODO: for the moment we will stick with one version, I will investigate how to split every controller
             services.AddSwaggerGen(c =>

@@ -11,10 +11,10 @@ namespace ExamManagement.Web.Controllers
     [ApiController]
     public class PresencesController : ControllerBase
     {
-        private readonly IGradeRepository _gradeRepo;
-        public PresencesController(IGradeRepository gradeRepo)
+        private readonly Core.Interfaces.Services.IPresenceService _presenceService;
+        public PresencesController(Core.Interfaces.Services.IPresenceService presenceService)
         {
-            _gradeRepo = gradeRepo;
+            _presenceService = presenceService;
         }
 
         //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
@@ -26,7 +26,7 @@ namespace ExamManagement.Web.Controllers
 
             if (markPresenceRequest.StudentID != null && markPresenceRequest.ExamID != 0 && markPresenceRequest.Token != null)
             {
-                _gradeRepo.MarkStudentPresent(markPresenceRequest.StudentID, markPresenceRequest.ExamID, markPresenceRequest.Token);
+                _presenceService.MarkStudentPresent(markPresenceRequest.StudentID, markPresenceRequest.ExamID, markPresenceRequest.Token);
                 return new HttpResponseMessage(HttpStatusCode.Accepted);
             }
             return new HttpResponseMessage(HttpStatusCode.GatewayTimeout);

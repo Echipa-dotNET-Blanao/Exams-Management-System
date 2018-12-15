@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces.Repositories;
+using ExamManagement.Core.SharedKernel;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExamManagement.Infrastructure.Data
@@ -15,60 +16,49 @@ namespace ExamManagement.Infrastructure.Data
             _dbContext = dbContext as AppDbContext;
         }
 
-        public Grade GetGradeByStudentId(string studentId, int examId)
-        {
 
+        public Grade GetById(int id)
+        {
             IEnumerable<Grade> gradeQuery = from grade in _dbContext.Grades
-                                            where grade.studentId == studentId && grade.examId == examId
-                                            orderby grade
+                                            where grade.id == id
                                             select grade;
 
             return gradeQuery.FirstOrDefault();
-
         }
 
-        public void CreateGrade(Grade grade)
+        public List<Grade> GetAll()
         {
-            _dbContext.Set<Grade>().Add(grade);
+            IEnumerable<Grade> gradeQuery = from grade in _dbContext.Grades
+                                            select grade;
+            return gradeQuery.ToList();
+        }
+
+        public void Add(Grade grade)
+        {
+            _dbContext.Add(grade);
             _dbContext.SaveChanges();
         }
 
-        public void SetGrade(int gradeId, float value)
+        public void Update(int id, Grade grade)
         {
-            var query = from grade in _dbContext.Grades
-                        where grade.id == gradeId
-                        select grade;
-
-            foreach (var grade in query)
-            {
-                grade.grade = value;
-            }
-
+            Grade originalGrade = GetById(id);
+            originalGrade.id = grade.id;
+            originalGrade.studentId = grade.studentId;
+            originalGrade.examId = grade.examId;
+            originalGrade.grade = grade.grade;
+            originalGrade.reevaluationClosed = grade.reevaluationClosed;
+            originalGrade.reevaluationRequested = grade.reevaluationRequested;
+            originalGrade.final = grade.final;
+            originalGrade.pages = grade.pages;
+            originalGrade.present = grade.present;
             _dbContext.SaveChanges();
         }
 
-        public void MarkStudentPresent(string studentId, int examId, string userToken)
+        public void Delete(int id)
         {
-            var examToken = (from exam in _dbContext.Exams
-                             where exam.id == examId
-                             select exam.token).FirstOrDefault();
-            if (examToken == userToken)
-            {
-                var studentGrade = (from grade in _dbContext.Grades
-                                    where grade.studentId == studentId && grade.examId == examId
-                                    select grade).SingleOrDefault();
-                studentGrade.present = true;
-                _dbContext.SaveChanges();
-            }
-        }
-
-        public IEnumerable<Grade> GetGradeByGradeId(int gradeId)
-        {
-            IEnumerable<Grade> query = from grade in _dbContext.Grades
-                                       where grade.id == gradeId
-                                       select grade;
-
-            return query;
+            Grade grade = GetById(id);
+            _dbContext.Remove(grade);
+            _dbContext.SaveChanges();
         }
     }
 
