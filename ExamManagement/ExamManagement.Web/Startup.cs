@@ -1,6 +1,7 @@
 ﻿using System;
 using ExamManagement.Core.Interfaces.Repositories;
 using ExamManagement.Infrastructure.Data;
+using ExamManagement.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -37,10 +38,10 @@ namespace ExamManagement.Web
             services.AddTransient<IStudentRepository, StudentRepository>();
             services.AddTransient<ICourseRepository, CourseRepository>();
             services.AddTransient<IExamRepository, ExamRepository>();
-            services.AddScoped<Core.Interfaces.Services.IMailService, Services.MailService>();
-            services.AddScoped<Core.Interfaces.Services.IExamService, Services.ExamService>();
-            services.AddScoped<Core.Interfaces.Services.IGradeService, Services.GradeService>();
-            services.AddScoped<Core.Interfaces.Services.IPresenceService, Services.PresenceService>();
+            services.AddScoped<IMailService, Services.MailService>();
+            services.AddScoped<IExamService, Services.ExamService>();
+            services.AddScoped<IGradeService, Services.GradeService>();
+            services.AddScoped<IPresenceService, Services.PresenceService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             //TODO: for the moment we will stick with one version, I will investigate how to split every controller
             services.AddSwaggerGen(c =>
