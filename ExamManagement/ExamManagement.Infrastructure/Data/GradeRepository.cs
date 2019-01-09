@@ -19,8 +19,8 @@ namespace ExamManagement.Infrastructure.Data
         public Grade GetById(int id)
         {
             IEnumerable<Grade> gradeQuery = from grade in _dbContext.Grades
-                                            where grade.id == id
-                                            select grade;
+                where grade.Id == id
+                select grade;
 
             return gradeQuery.FirstOrDefault();
         }
@@ -28,7 +28,7 @@ namespace ExamManagement.Infrastructure.Data
         public List<Grade> GetAll()
         {
             IEnumerable<Grade> gradeQuery = from grade in _dbContext.Grades
-                                            select grade;
+                select grade;
             return gradeQuery.ToList();
         }
 
@@ -40,25 +40,24 @@ namespace ExamManagement.Infrastructure.Data
 
         public void Update(int id, Grade grade)
         {
-            Grade originalGrade = GetById(id);
-            originalGrade.id = grade.id;
-            originalGrade.studentId = grade.studentId;
-            originalGrade.examId = grade.examId;
-            originalGrade.grade = grade.grade;
-            originalGrade.reevaluationClosed = grade.reevaluationClosed;
-            originalGrade.reevaluationRequested = grade.reevaluationRequested;
-            originalGrade.final = grade.final;
-            originalGrade.pages = grade.pages;
-            originalGrade.present = grade.present;
+            var originalGrade = GetById(id);
+            originalGrade.Id = grade.Id;
+            originalGrade.StudentId = grade.StudentId;
+            originalGrade.ExamId = grade.ExamId;
+            originalGrade.GradeValue = grade.GradeValue;
+            originalGrade.ReevaluationClosed = grade.ReevaluationClosed;
+            originalGrade.ReevaluationRequested = grade.ReevaluationRequested;
+            originalGrade.Final = grade.Final;
+            originalGrade.Pages = grade.Pages;
+            originalGrade.Present = grade.Present;
             _dbContext.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            Grade grade = GetById(id);
+            var grade = GetById(id);
             _dbContext.Remove(grade);
             _dbContext.SaveChanges();
         }
     }
-
 }

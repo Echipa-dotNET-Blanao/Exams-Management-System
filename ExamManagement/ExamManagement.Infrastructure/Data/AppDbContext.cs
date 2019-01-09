@@ -10,7 +10,11 @@ namespace ExamManagement.Infrastructure.Data
     {
         private readonly IDomainEventDispatcher _dispatcher;
 
-        public DbSet<CorrectionScore> CorrectionScores { get; set; }
+        public AppDbContext(DbContextOptions<AppDbContext> options)
+            : base(options)
+        {
+        }
+
         public DbSet<Course> Courses { get; set; }
         public DbSet<Didactic> Didactics { get; set; }
         public DbSet<Exam> Exams { get; set; }
@@ -18,14 +22,9 @@ namespace ExamManagement.Infrastructure.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options)
-            : base(options)
-        {
-        }
-
         public override int SaveChanges()
         {
-            int result = base.SaveChanges();
+            var result = base.SaveChanges();
 
             // dispatch events only if save was successful
             var entitiesWithEvents = ChangeTracker.Entries<BaseEntity>()
@@ -37,10 +36,7 @@ namespace ExamManagement.Infrastructure.Data
             {
                 var events = entity.Events.ToArray();
                 entity.Events.Clear();
-                foreach (var domainEvent in events)
-                {
-                    _dispatcher.Dispatch(domainEvent);
-                }
+                foreach (var domainEvent in events) _dispatcher.Dispatch(domainEvent);
             }
 
             return result;

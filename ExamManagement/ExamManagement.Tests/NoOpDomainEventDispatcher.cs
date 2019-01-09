@@ -5,6 +5,8 @@ namespace ExamManagement.Tests
 {
     public class NoOpDomainEventDispatcher : IDomainEventDispatcher
     {
-        public void Dispatch(BaseDomainEvent domainEvent) { }
+        public void Dispatch(BaseDomainEvent domainEvent)
+        {
+        }
     }
 }

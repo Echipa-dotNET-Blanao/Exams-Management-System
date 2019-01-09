@@ -4,9 +4,9 @@ namespace ExamManagement.Core.Entities
 {
     public class Didactic
     {
-        [Key]
-        public int id { get; set; }
-        public int teacherId { set; get; }
-        public int courseId { set; get; }
+        [Key] public int Id { get; set; }
+
+        public int TeacherId { set; get; }
+        public int CourseId { set; get; }
     }
 }

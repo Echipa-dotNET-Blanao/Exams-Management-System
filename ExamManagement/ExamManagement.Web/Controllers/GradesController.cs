@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Net;
 using System.Net.Http;
 using ExamManagement.Core.Interfaces.Services;
 using ExamManagement.Web.Requests;
@@ -10,7 +10,6 @@ namespace ExamManagement.Web.Controllers
     [ApiController]
     public class GradesController : Controller
     {
-
         private readonly IGradeService _gradeService;
 
         public GradesController(IGradeService gradeService)
@@ -18,18 +17,18 @@ namespace ExamManagement.Web.Controllers
             _gradeService = gradeService;
         }
 
-        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
         [HttpPut]
         public HttpResponseMessage UpdateGrade([FromBody] UpdateGradeRequest setGradeRequest)
         {
-            _gradeService.SetGrade(setGradeRequest.GradeID, setGradeRequest.Grade);
-            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+            _gradeService.SetGrade(setGradeRequest.GradeId, setGradeRequest.Grade);
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
-        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
+
         [HttpGet]
         public JsonResult GetGrade([FromQuery] GetGradeRequest getGradeRequest)
         {
-            return Json(_gradeService.GetGradeByStudentId(getGradeRequest.StudentID, getGradeRequest.ExamID));
+            return Json(_gradeService.GetGradeByStudentId(getGradeRequest.StudentId, getGradeRequest.ExamId));
         }
     }
 }

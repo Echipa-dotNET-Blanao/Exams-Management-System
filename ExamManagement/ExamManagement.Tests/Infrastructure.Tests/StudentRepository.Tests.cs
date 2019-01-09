@@ -5,6 +5,5 @@ namespace ExamManagement.Tests.Infrastructure.Tests
     [TestClass]
     public class StudentRepositoryTests
     {
-        
     }
 }
