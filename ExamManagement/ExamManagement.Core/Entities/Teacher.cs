@@ -6,16 +6,16 @@ namespace ExamManagement.Core.Entities
     {
         public Teacher(int id, string fullName, string email)
         {
-            this.id = id;
-            this.fullName = fullName;
-            this.email = email;
+            Id = id;
+            FullName = fullName;
+            Email = email;
         }
-        [Key]
-        public int id { set; get; }
-        public string fullName { set; get; }
-        public string email { set; get; }
-        public string passwordBase { set; get; }
-        public string passwordHash { set; get; }
-        
+
+        [Key] public int Id { set; get; }
+
+        public string FullName { set; get; }
+        public string Email { set; get; }
+        public string PasswordBase { set; get; }
+        public string PasswordHash { set; get; }
     }
 }

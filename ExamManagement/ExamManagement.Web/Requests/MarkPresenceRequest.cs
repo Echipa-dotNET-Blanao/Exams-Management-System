@@ -2,8 +2,8 @@
 {
     public class MarkPresenceRequest
     {
-        public string StudentID { get; set; }
-        public int ExamID { get; set; }
+        public string StudentId { get; set; }
+        public int ExamId { get; set; }
         public string Token { get; set; }
     }
 }

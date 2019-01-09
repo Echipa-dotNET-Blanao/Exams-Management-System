@@ -2,7 +2,7 @@
 {
     public class UpdateGradeRequest
     {
-        public int GradeID { get; set; }
+        public int GradeId { get; set; }
         public float Grade { get; set; }
     }
 }

@@ -1,8 +1,8 @@
-﻿using ExamManagement.Web.Requests;
-using Microsoft.AspNetCore.Mvc;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using ExamManagement.Core.Interfaces.Services;
+using ExamManagement.Web.Requests;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ExamManagement.Web.Controllers
 {
@@ -20,8 +20,9 @@ namespace ExamManagement.Web.Controllers
         [HttpPut]
         public HttpResponseMessage Presence([FromBody] MarkPresenceRequest markPresenceRequest)
         {
-            _presenceService.MarkStudentPresent(markPresenceRequest.StudentID, markPresenceRequest.ExamID, markPresenceRequest.Token);
+            _presenceService.MarkStudentPresent(markPresenceRequest.StudentId, markPresenceRequest.ExamId,
+                markPresenceRequest.Token);
             return new HttpResponseMessage(HttpStatusCode.Accepted);
-       }
+        }
     }
 }

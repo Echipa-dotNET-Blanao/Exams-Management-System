@@ -6,19 +6,20 @@ namespace ExamManagement.Core.Entities
     {
         public Student(string id, string email, string fullName, int studyYear, string studyGroup)
         {
-            this.id = id;
-            this.email = email;
-            this.fullName = fullName;
-            this.studyYear = studyYear;
-            this.studyGroup = studyGroup;
+            Id = id;
+            Email = email;
+            FullName = fullName;
+            StudyYear = studyYear;
+            StudyGroup = studyGroup;
         }
-        [Key]
-        public string id { set; get; }
-        public string email { set; get; }
-        public string passwordBase { set; get; }
-        public string passwordHash { set; get; }
-        public string fullName { set; get; }
-        public int studyYear { set; get; }
-        public string studyGroup { set; get; }
+
+        [Key] public string Id { set; get; }
+
+        public string Email { set; get; }
+        public string PasswordBase { set; get; }
+        public string PasswordHash { set; get; }
+        public string FullName { set; get; }
+        public int StudyYear { set; get; }
+        public string StudyGroup { set; get; }
     }
 }

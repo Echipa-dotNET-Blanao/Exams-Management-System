@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using ExamManagement.Core.Entities;
+﻿using ExamManagement.Core.Entities;
 
 namespace ExamManagement.Core.Interfaces.Services
 {

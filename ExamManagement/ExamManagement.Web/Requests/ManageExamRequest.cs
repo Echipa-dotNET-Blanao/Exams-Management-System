@@ -1,10 +1,11 @@
-﻿namespace ExamManagement.Web.Requests
-{
+﻿using ExamManagement.Core.Interfaces.Enums;
 
+namespace ExamManagement.Web.Requests
+{
     public class ManageExamRequest
     {
-        public int ExamID { get; set; }
-        public Core.Interfaces.Enums.ManageExamTask Task { get; set; }
-        //enum
+        public int ExamId { get; set; }
+
+        public ManageExamTask Task { get; set; }
     }
 }

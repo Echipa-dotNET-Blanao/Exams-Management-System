@@ -2,7 +2,7 @@
 {
     public class GetGradeRequest
     {
-        public string StudentID { get; set; }
-        public int ExamID { get; set; }
+        public string StudentId { get; set; }
+        public int ExamId { get; set; }
     }
 }

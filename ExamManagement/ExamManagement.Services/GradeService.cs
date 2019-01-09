@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ExamManagement.Core.Entities;
-using ExamManagement.Core.Interfaces.Services;
 using ExamManagement.Core.Interfaces.Repositories;
-using System;
+using ExamManagement.Core.Interfaces.Services;
 
 namespace ExamManagement.Services
 {
     public class GradeService : IGradeService
     {
-        private IGradeRepository _gradeRepository;
+        private readonly IGradeRepository _gradeRepository;
 
         public GradeService(IGradeRepository gradeRepository)
         {
@@ -19,19 +19,14 @@ namespace ExamManagement.Services
 
         public Grade GetGradeByStudentId(string studentId, int examId)
         {
-            
             if (studentId == null) throw new ArgumentNullException(nameof(studentId));
             if (examId <= 0) throw new ArgumentOutOfRangeException(nameof(examId));
-            
-            List<Grade> allGrades = _gradeRepository.GetAll();
-            
+
+            var allGrades = _gradeRepository.GetAll();
+
             foreach (var grade in allGrades)
-            {
-                if (grade.studentId == studentId && grade.examId == examId)
-                {
+                if (grade.StudentId == studentId && grade.ExamId == examId)
                     return grade;
-                }
-            }
             throw new KeyNotFoundException();
         }
 
@@ -42,12 +37,12 @@ namespace ExamManagement.Services
 
         public void SetGrade(int gradeId, float value)
         {
-            if (gradeId<= 0) throw new ArgumentOutOfRangeException(nameof(gradeId));
+            if (gradeId <= 0) throw new ArgumentOutOfRangeException(nameof(gradeId));
             if (value <= 0.0) throw new ArgumentOutOfRangeException(nameof(gradeId));
 
-            Grade newGrade = _gradeRepository.GetById(gradeId);
-            newGrade.grade = value;
-            _gradeRepository.Update(newGrade.id, newGrade);
+            var newGrade = _gradeRepository.GetById(gradeId);
+            newGrade.GradeValue = value;
+            _gradeRepository.Update(newGrade.Id, newGrade);
         }
 
         public Grade GetGradeByGradeId(int gradeId)

@@ -5,6 +5,5 @@ namespace ExamManagement.Tests.Services.Tests
     [TestClass]
     public class GradeServiceTests
     {
-        
     }
 }

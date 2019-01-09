@@ -1,7 +1,7 @@
-﻿using ExamManagement.Core.Entities;
-using ExamManagement.Core.Interfaces.Repositories;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using ExamManagement.Core.Entities;
+using ExamManagement.Core.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExamManagement.Infrastructure.Data
@@ -23,7 +23,7 @@ namespace ExamManagement.Infrastructure.Data
 
         public void Delete(int id)
         {
-            Course course = GetById(id);
+            var course = GetById(id);
             _dbContext.Remove(course);
             _dbContext.SaveChanges();
         }
@@ -31,26 +31,26 @@ namespace ExamManagement.Infrastructure.Data
         public List<Course> GetAll()
         {
             IEnumerable<Course> courseQuery = from course in _dbContext.Courses
-                                            select course;
+                select course;
             return courseQuery.ToList();
         }
 
         public Course GetById(int id)
         {
             IEnumerable<Course> courseQuery = from course in _dbContext.Courses
-                                            where course.id == id
-                                            select course;
+                where course.Id == id
+                select course;
 
             return courseQuery.FirstOrDefault();
         }
 
         public void Update(int id, Course course)
         {
-            Course originalCourse = GetById(id);
-            originalCourse.id = course.id;
-            originalCourse.title = course.title;
-            originalCourse.studyYear = course.studyYear;
-            originalCourse.semester = course.semester;
+            var originalCourse = GetById(id);
+            originalCourse.Id = course.Id;
+            originalCourse.Title = course.Title;
+            originalCourse.StudyYear = course.StudyYear;
+            originalCourse.Semester = course.Semester;
             _dbContext.SaveChanges();
         }
     }

@@ -1,8 +1,7 @@
-﻿using ExamManagement.Core.Entities;
-using System;
-using ExamManagement.Core.Interfaces.Repositories;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using ExamManagement.Core.Entities;
+using ExamManagement.Core.Interfaces.Repositories;
 
 namespace ExamManagement.Infrastructure.Data
 {
@@ -12,7 +11,7 @@ namespace ExamManagement.Infrastructure.Data
 
         public StudentRepository(AppDbContext dbContext)
         {
-            this._dbContext = dbContext;
+            _dbContext = dbContext;
         }
 
         public void Add(Student student)
@@ -23,7 +22,7 @@ namespace ExamManagement.Infrastructure.Data
 
         public void Delete(string id)
         {
-            Student student = GetById(id);
+            var student = GetById(id);
             _dbContext.Remove(student);
             _dbContext.SaveChanges();
         }
@@ -37,22 +36,22 @@ namespace ExamManagement.Infrastructure.Data
         public Student GetById(string id)
         {
             IEnumerable<Student> studentQuery = from stud in _dbContext.Students
-                                                where stud.id == id
-                                          select stud;
+                where stud.Id == id
+                select stud;
 
             return studentQuery.FirstOrDefault();
         }
 
         public void Update(string id, Student student)
         {
-            Student originalStudent = GetById(id);
-            originalStudent.id = student.id;
-            originalStudent.email = student.email;
-            originalStudent.passwordBase = student.passwordBase;
-            originalStudent.passwordHash = student.passwordHash;
-            originalStudent.fullName = student.fullName;
-            originalStudent.studyYear = student.studyYear;
-            originalStudent.studyGroup = student.studyGroup;
+            var originalStudent = GetById(id);
+            originalStudent.Id = student.Id;
+            originalStudent.Email = student.Email;
+            originalStudent.PasswordBase = student.PasswordBase;
+            originalStudent.PasswordHash = student.PasswordHash;
+            originalStudent.FullName = student.FullName;
+            originalStudent.StudyYear = student.StudyYear;
+            originalStudent.StudyGroup = student.StudyGroup;
             _dbContext.SaveChanges();
         }
     }
