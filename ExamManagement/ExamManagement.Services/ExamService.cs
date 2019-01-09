@@ -105,12 +105,10 @@ namespace ExamManagement.Services
             }
         }
 
-        // Eliminate the separate functionality of Start/Close Exam/Publish Grades 
         public void ManageExam(int examId, ManageExamTask task)
         {
             if (_examRepository.GetById(examId) == null) throw new ArgumentOutOfRangeException();
-            if (!(task == ManageExamTask.Start || task == ManageExamTask.End || task == ManageExamTask.PublishGrades))
-                throw new ArgumentOutOfRangeException();
+
             switch (task)
             {
                 case ManageExamTask.Start:
@@ -122,6 +120,8 @@ namespace ExamManagement.Services
                 case ManageExamTask.PublishGrades:
                     PublishGrades(examId);
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(task), task, null);
             }
         }
     }
