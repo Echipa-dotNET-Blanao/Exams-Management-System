@@ -1,8 +1,8 @@
-﻿using Autofac;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Autofac;
 using ExamManagement.Core.Interfaces;
 using ExamManagement.Core.SharedKernel;
 
@@ -19,16 +19,13 @@ namespace ExamManagement.Infrastructure.DomainEvents
 
         public void Dispatch(BaseDomainEvent domainEvent)
         {
-            Type handlerType = typeof(IHandle<>).MakeGenericType(domainEvent.GetType());
-            Type wrapperType = typeof(DomainEventHandler<>).MakeGenericType(domainEvent.GetType());
-            IEnumerable handlers = (IEnumerable)_container.Resolve(typeof(IEnumerable<>).MakeGenericType(handlerType));
-            IEnumerable<DomainEventHandler> wrappedHandlers = handlers.Cast<object>()
-                .Select(handler => (DomainEventHandler)Activator.CreateInstance(wrapperType, handler));
+            var handlerType = typeof(IHandle<>).MakeGenericType(domainEvent.GetType());
+            var wrapperType = typeof(DomainEventHandler<>).MakeGenericType(domainEvent.GetType());
+            var handlers = (IEnumerable) _container.Resolve(typeof(IEnumerable<>).MakeGenericType(handlerType));
+            var wrappedHandlers = handlers.Cast<object>()
+                .Select(handler => (DomainEventHandler) Activator.CreateInstance(wrapperType, handler));
 
-            foreach (DomainEventHandler handler in wrappedHandlers)
-            {
-                handler.Handle(domainEvent);
-            }
+            foreach (var handler in wrappedHandlers) handler.Handle(domainEvent);
         }
 
         private abstract class DomainEventHandler
@@ -48,7 +45,7 @@ namespace ExamManagement.Infrastructure.DomainEvents
 
             public override void Handle(BaseDomainEvent domainEvent)
             {
-                _handler.Handle((T)domainEvent);
+                _handler.Handle((T) domainEvent);
             }
         }
     }

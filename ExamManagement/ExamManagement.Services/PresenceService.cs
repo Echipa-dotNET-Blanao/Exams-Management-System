@@ -1,30 +1,32 @@
-﻿using ExamManagement.Core.Interfaces.Services;
+﻿using System;
 using ExamManagement.Core.Interfaces.Repositories;
+using ExamManagement.Core.Interfaces.Services;
 
 namespace ExamManagement.Services
 {
     public class PresenceService : IPresenceService
     {
-        private IGradeRepository _gradeRepository;
-        private IExamRepository _examRepository;
+        private readonly IExamRepository _examRepository;
+        private readonly IGradeRepository _gradeRepository;
 
         public PresenceService(IGradeRepository gradeRepository, IExamRepository examRepository)
         {
             _examRepository = examRepository;
             _gradeRepository = gradeRepository;
         }
+
         public void MarkStudentPresent(string studentId, int examId, string token)
         {
-            //Temporary until we make the repository great again
-            var examToken = "";
-            //var examToken = (from exam in _dbContext.Exams
-            //                 where exam.id == examId
-            //                 select exam.token).FirstOrDefault();
+            if (studentId == null || examId <= 0 || token == null || _examRepository.GetById(examId) == null)
+                throw new ArgumentNullException(nameof(studentId));
+
+            var examToken = _examRepository.GetById(examId).Token;
+
             if (examToken == token)
             {
                 var studentGrade = new GradeService(_gradeRepository).GetGradeByStudentId(studentId, examId);
-                studentGrade.present = true;
-                _gradeRepository.Update(studentGrade.id, studentGrade);
+                studentGrade.Present = true;
+                _gradeRepository.Update(studentGrade.Id, studentGrade);
             }
         }
     }

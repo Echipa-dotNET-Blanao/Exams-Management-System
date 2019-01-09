@@ -1,5 +1,6 @@
-﻿using System;
+﻿using System.Net;
 using System.Net.Http;
+using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces.Services;
 using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
@@ -17,25 +18,24 @@ namespace ExamManagement.Web.Controllers
             _examService = examService;
         }
 
-        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
-        //TODO : Also respect naming convensions for the routes and the variables.
         [HttpPost]
         public HttpResponseMessage CreateExam([FromQuery] CreateExamRequest createExamRequest)
         {
-            _examService.CreateExam(new Core.Entities.Exam(createExamRequest.CourseID, createExamRequest.ExamDate, createExamRequest.Room,
-                createExamRequest.StartTime, createExamRequest.EndTime, createExamRequest.CorrectionScorePostDate, createExamRequest.Type,
+            _examService.CreateExam(new Exam(createExamRequest.CourseId, createExamRequest.ExamDate,
+                createExamRequest.Room,
+                createExamRequest.StartTime, createExamRequest.EndTime, createExamRequest.CorrectionScorePostDate,
+                createExamRequest.Type,
                 createExamRequest.CorrectionScore));
-            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
-        //TODO : In controllers will never be logic like defensive codding. Move it to repo or where you have the logic of the app.
-        //TODO : Also respect naming convensions for the routes and the variables.
         [HttpPut]
         public HttpResponseMessage ManageExam([FromQuery] ManageExamRequest manageExamRequest)
         {
-            _examService.ManageExam(manageExamRequest.ExamID, manageExamRequest.Task);
-            return new HttpResponseMessage(System.Net.HttpStatusCode.OK);
-        }
+            _examService.ManageExam(manageExamRequest.ExamId, manageExamRequest.Task);
 
+            return new HttpResponseMessage(HttpStatusCode.OK);
+        }
     }
 }

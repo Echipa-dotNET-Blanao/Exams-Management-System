@@ -1,5 +1,5 @@
-using ExamManagement.Core.Entities;
 using System.Collections.Generic;
+using ExamManagement.Core.Entities;
 
 namespace ExamManagement.Core.Interfaces.Repositories
 {

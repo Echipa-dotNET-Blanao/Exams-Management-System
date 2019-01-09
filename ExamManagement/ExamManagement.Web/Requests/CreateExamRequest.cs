@@ -4,7 +4,7 @@ namespace ExamManagement.Web.Requests
 {
     public class CreateExamRequest
     {
-        public int CourseID { get; set; }
+        public int CourseId { get; set; }
         public DateTime ExamDate { get; set; }
         public string Room { get; set; }
         public DateTime StartTime { get; set; }
