@@ -1,0 +1,153 @@
+
+!!!Requests that only trigger an action on the server and don't retrieve data, will return a success bool and a message string!!!
+
+Front-end and Backend Data types to be transferred back and forth (used in methods in paranthesis)
+    TeacherExam:
+        id int
+        courseName string
+        examType string(restanta, sesiune,partial)
+        startTime DateTime
+        room String
+        started bool
+        finished bool
+        correctionScorePublished bool
+    StudentExam:
+        id int
+        courseName string
+        startTime DateTime
+        endTime DateTime
+        reevaluationEndTime DateTime
+        started bool
+        finished bool
+        correctionScorePublished bool
+        correctionScoreLink string
+        gradesPublished bool
+        studentGrade float
+        medianGrade float
+        teacherName string
+        teacherID int
+        room string
+        present bool
+        reevaluationClosed bool
+    TeacherGrade:
+        studentID string
+        studentFullName string
+        gradeValue float
+    CoursesInformation:
+        dict<courseID, courseName>
+    TeacherInformation:
+        fullname string
+        courses CoursesInformation (only the ones available for the teacher)
+    StudentInformation:
+        fullname string
+        group string
+        year int
+        email string
+    ExamStudent:
+        fullname string
+        studentID string
+        pages int (number of pages written)
+        submittedPaper bool (based on number of pages)
+
+//This will be one page unified for teachers and students alike
+//On a login request to the server, it will check with a regex if it is a student or a teacher
+//Students use the registration number(numar matricol), while the teachers will use their mail
+Login page
+    Workflow:
+        Load from server
+        Submit form to login service
+        if(success):
+            Redirect to teacher/student dashboard
+        else:
+            Show an error
+	Login Call:
+		Send:
+			username string
+            password string
+        Receive:
+            success bool
+            message string
+//This is the homepage of the teachers
+//Here they can see the current exams and the exam history
+//They will be sorted in the front end 
+//The teacher can see his name.
+//They can create a new exam from here (redirect to another page)
+//Or manage an existing exam (redirect as well)
+Teacher's dashboard
+    Workflow:
+        Automatic:
+            Load form server
+            Retrieve teacher information (TeacherInformation)
+            Retrieve teacher exams (TeacherExam)
+    Retrieve teacher exams:
+        Send:
+            teacherID int
+        Receive:
+            exams vector<TeacherDashboardExam>
+//Just a simple form
+Teacher's Create A New Exam Page:
+    Workflow:
+        Automatic:
+            Load form server
+            Retrieve teacher information (TeacherInformation)
+        Requests:
+            Create (Should be edited as follows)
+    Create:
+        Send:
+            CourseID int
+            Room string
+            ExamDate DateTime
+            StartTime DateTime
+            EndTime DateTime
+            HasCorrectionScore bool
+            CorrectionScorePostDate DateTime
+            CorrectionScoreLink String
+            ExamType int (restanta, sesiune, partial)
+//Here a teacher can trigger the following Requests
+//All the request controlls should be verified if they can be triggered in the server, and block those actions
+Teacher's Manage Existing Exam Page:
+    Workflow:
+        Automatic:
+            Load form server
+            Retrieve teacher information (TeacherInformation)
+            Retrieve exam information (TeacherExam)
+            Retrieve students list (List<ExamStudent>)
+        Requests:
+            Start Exam (we use the existing one)
+            End Exam (we use the existing one)
+            Submit Student Pages
+            Publish Correction Score 
+        Publish Correction Score:
+            Send:
+                examID int
+//Here the teacher will have a list of grades which he can fill
+//The grades should be prefilled from with the previous grades
+//Each entry in the table should have it's own submit button
+//At the top of the page there should be a Publish grades button which will be available after all the grades have been modified from 0
+Teacher's Grade Exam Page:
+    Workflow:
+        Automatic:
+            Load form server
+            Retrieve teacher information (TeacherInformation)
+            Retrieve exam information (TeacherExam)
+            Retrieve grades for that exam (List<TeacherGrade>)
+        Requests:
+            GradeStudent (we use the existing one)
+            PublishGrades (we use the existing one)
+
+//Simple and straight forward, all the info about the exams should be here
+//Grades will be here
+//Each exam entry that is valid for a reevaluation should have a reevaluate button
+//Each exam entry that has started and is not finished should have a field for the token and a submit button
+Student's dashboard
+    Workflow:
+        Automatic:
+            Load form server
+            Retrieve student information (StudentInformation)
+            Retrieve student exams (vector<StudentExam>)
+        Requests:
+            Mark as present (we use the existing one)
+            Request a reevaluation
+    Request a reevaluation:
+        Send:
+            studentID, examID
