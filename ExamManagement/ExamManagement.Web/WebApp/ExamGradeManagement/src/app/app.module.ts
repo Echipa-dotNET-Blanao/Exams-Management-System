@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { LoginModule } from './login/login.module';
 import { StudentModule } from './student/student.module';
+import { TeacherModule } from './teacher/teacher.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { StudentModule } from './student/student.module';
     LoginModule,
     StudentModule,
   ],
-  providers: [LoginModule, StudentModule],
+  providers: [LoginModule, StudentModule, TeacherModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
