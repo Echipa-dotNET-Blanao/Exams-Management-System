@@ -1,10 +1,8 @@
 <div class="section-background">
   <div class="login">
     <h1 class="title">Welcome!</h1>
-      <form method="post">
-        <input type="text" name="u" placeholder="Username" required="required" />
-          <input type="password" name="p" placeholder="Password" required="required" />
-          <button type="submit" class="btn btn-primary btn-block btn-large">Log in</button>
-      </form>
+        <input type="text"  placeholder="Username" [(ngModel)]="Username"/>
+          <input type="password" placeholder="Password" [(ngModel)]="Password" />
+          <button type="submit" class="btn btn-primary btn-block btn-large" (click)="makePostRequest(Username,Password);">Log in</button>
   </div>
 </div>
