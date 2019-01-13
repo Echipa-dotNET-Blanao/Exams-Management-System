@@ -5,9 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { LoginModule } from './login/login.module';
-import { TeacherModule } from './teacher/teacher.module';
 import { StudentModule } from './student/student.module';
-
+import { TeacherModule } from './teacher/teacher.module';
 
 @NgModule({
   declarations: [
