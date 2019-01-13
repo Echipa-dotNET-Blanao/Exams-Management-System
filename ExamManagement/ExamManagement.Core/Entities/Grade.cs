@@ -5,11 +5,11 @@ namespace ExamManagement.Core.Entities
 {
     public class Grade : BaseEntity
     {
-        public Grade(string studentId, int examId, float grade, int pages)
+        public Grade(string studentId, int examId, float gradeValue, int pages)
         {
             StudentId = studentId;
             ExamId = examId;
-            GradeValue = grade;
+            GradeValue = gradeValue;
             Pages = pages;
         }
 
