@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TeacherGradeExamComponent } from './teacher-grade-exam/teacher-grade-exam.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 @NgModule({
   declarations: [TeacherGradeExamComponent],
@@ -8,7 +10,8 @@ import { TeacherGradeExamComponent } from './teacher-grade-exam/teacher-grade-ex
     CommonModule
   ],
   exports: [
-    TeacherGradeExamComponent
+    TeacherGradeExamComponent,
+    DashboardComponent
   ]
 })
 export class TeacherModule { }
