@@ -37,6 +37,7 @@ namespace AuthService
             services.AddScoped<DbContext, ApplicationContext>();
             services.AddTransient<IAuthRepository, AuthRepository>();
             services.AddScoped<IStudentAuthService, StudentAuthService>();
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
