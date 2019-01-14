@@ -34,10 +34,13 @@ namespace ExamManagement.Web
             services.AddTransient<IStudentRepository, StudentRepository>();
             services.AddTransient<ICourseRepository, CourseRepository>();
             services.AddTransient<IExamRepository, ExamRepository>();
+            services.AddTransient<ITeacherRepository, TeacherRepository>();
+            services.AddTransient<IDidacticRepository, DidacticRepository>();
             services.AddScoped<IMailService, MailService>();
             services.AddScoped<IExamService, ExamService>();
             services.AddScoped<IGradeService, GradeService>();
             services.AddScoped<IPresenceService, PresenceService>();
+            services.AddScoped<ITeacherService, TeacherService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "ExamManagement", Version = "v1"}); });
         }

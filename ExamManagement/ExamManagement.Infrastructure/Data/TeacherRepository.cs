@@ -20,7 +20,7 @@ namespace ExamManagement.Infrastructure.Data
             _dbContext.SaveChanges();
         }
 
-        public void Delete(string id)
+        public void Delete(int id)
         {
             var teacher = GetById(id);
             _dbContext.Remove(teacher);

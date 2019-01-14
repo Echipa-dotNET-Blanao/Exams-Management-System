@@ -1,7 +1,7 @@
 ﻿using ExamManagement.Core.Entities;
 using System.Collections.Generic;
 
-namespace ExamManagement.Core
+namespace ExamManagement.Core.Entities
 {
     public class TeacherInformation
     {

@@ -4,7 +4,6 @@ using ExamManagement.Core;
 using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces.Repositories;
 using ExamManagement.Core.Interfaces.Services;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ExamManagement.Services
 {

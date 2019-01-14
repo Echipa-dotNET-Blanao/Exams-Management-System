@@ -10,25 +10,17 @@ namespace ExamManagement.Web.Controllers
     [ApiController]
     public class TeachersController : Controller
     {
-        private readonly IGradeService _gradeService;
+        private readonly ITeacherService _teacherService;
 
-        public TeachersController(IGradeService gradeService)
+        public TeachersController(ITeacherService teacherService)
         {
-            _gradeService = gradeService;
+            _teacherService = teacherService;
         }
-
-        [HttpPut]
-        public HttpResponseMessage UpdateGrade([FromBody] UpdateGradeRequest setGradeRequest)
-        {
-            _gradeService.SetGrade(setGradeRequest.GradeId, setGradeRequest.Grade);
-
-            return new HttpResponseMessage(HttpStatusCode.OK);
-        }
-
+        
         [HttpGet]
-        public JsonResult GetGrade([FromQuery] GetGradeRequest getGradeRequest)
+        public JsonResult GetTeacherInformation([FromQuery] GetTeacherInformationRequest getTeacherInformationRequest)
         {
-            return Json(_gradeService.GetGradeByStudentId(getGradeRequest.StudentId, getGradeRequest.ExamId));
+            return Json(_teacherService.GetTeacherInformation(_teacherService.GetTeacherById(getTeacherInformationRequest.TeacherID)));
         }
     }
 }

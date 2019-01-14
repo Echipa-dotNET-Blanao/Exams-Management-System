@@ -5,10 +5,10 @@ namespace ExamManagement.Core.Interfaces.Repositories
 {
     public interface IDidacticRepository
     {
-        Didactic GetById(string id);
+        Didactic GetById(int id);
         List<Didactic> GetAll();
         void Add(Didactic didactic);
-        void Update(string id, Didactic student);
-        void Delete(string id);
+        void Update(int id, Didactic student);
+        void Delete(int id);
     }
 }
