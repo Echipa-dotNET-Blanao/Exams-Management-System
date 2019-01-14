@@ -6,16 +6,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
   
-  loginUrl : string = "localhost:51861/api/StudentAuth";
+  loginUrl : string = "http://localhost:51861/api/StudentAuth";
 
   constructor(private http: HttpClient) { }
 
-  makeLogin(login: string, pass: string)  {
+  async makeLogin(login: string, pass: string): Promise<any>  {
     const body = {user: login, password: pass};
 
-    this.http.post(this.loginUrl, body)
-    .subscribe(data => {
-      console.log(body);
-    });
+    return this.http.post(this.loginUrl, body).toPromise<any>();
  } 
 }
