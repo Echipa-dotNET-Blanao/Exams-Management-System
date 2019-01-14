@@ -14,7 +14,8 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
   }
 
-  makePostRequest(userName : string, password : string) {
-    this.loginService.makeLogin(userName, password);
+  makePostRequest(id : string, password : string) {
+    console.log(this.loginService.makeLogin(id, password));
+    this.loginService.makeLogin(id, password);
   }
 }

@@ -11,7 +11,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   async makeLogin(login: string, pass: string): Promise<any>  {
-    const body = {user: login, password: pass};
+    const body = {id: login, password: pass};
 
     return this.http.post(this.loginUrl, body).toPromise<any>();
  } 
