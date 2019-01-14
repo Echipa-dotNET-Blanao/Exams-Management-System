@@ -32,7 +32,7 @@ namespace AuthService.Controllers
 
         // POST: api/StudentAuth
         [HttpPost]
-        [EnableCors]
+        [EnableCors("MyPolicy")]
         public String AuthStudent([FromBody] AuthStudentRequest authStudentRequest)
         {
             return studentAuthService.authStudent(authStudentRequest).ToString();
