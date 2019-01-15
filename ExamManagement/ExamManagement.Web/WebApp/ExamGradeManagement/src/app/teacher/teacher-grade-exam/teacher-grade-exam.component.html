@@ -1,10 +1,43 @@
 <div class="container">
-    <div class="sidebar">
-        <p>Sidebar</p>
+
+  <div class="sidebar">
+    <span #teacherName>Teacher Name</span>
+    <hr>
+    <div class="sidebar-item">
+      <button>Adauga Examene</button>
     </div>
 
-    <div class="content">
-        <img src="/assets/images/auditorium-benches-board-207691.jpg">
-        <p>Content</p>
+    <div class="sidebar-item">
+      <button>Examen</button>
     </div>
+
+    <div class="sidebar-item">
+      <button>Istoric Examene</button>
+    </div>
+
+    <div class="sidebar-item">
+      <button>Contestatii</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="student-name">
+      <p>Student Name</p>
+    </div>
+
+    <hr>
+
+    <div class="student-grade">
+      <ng-container *ngFor="let index in lista_studenti">
+        {{index}}
+        <input type="number" placeholder="Nota">
+        <button type="submit" class="btn btn-primary btn-block btn-large">Trimite</button>
+      </ng-container>
+    </div>
+
+
+  </div>
+
+  <div class="background-image"></div>
 </div>
