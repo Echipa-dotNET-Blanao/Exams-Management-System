@@ -1,36 +1,33 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AuthService.Requests
 {
-    public class AuthStudentResponse
+    public class AuthStudentResponse : AuthResponse
     {
         public AuthStudentResponse(string id, string email, string fullName, int studyYear, string studyGroup)
         {
-            this.id = id;
-            this.email = email;
-            this.fullName = fullName;
-            this.studyYear = studyYear;
-            this.studyGroup = studyGroup;
+            this.Id = id;
+            this.Email = email;
+            this.FullName = fullName;
+            this.StudyYear = studyYear;
+            this.StudyGroup = studyGroup;
         }
 
-        private String id { get; set; }
-        private String email { get; set; }
-        private String fullName { get; set; }
-        private int studyYear { get; set; }
-        private String studyGroup { get; set; }
+        private String Id { get; set; }
+        private String Email { get; set; }
+        private String FullName { get; set; }
+        private int StudyYear { get; set; }
+        private String StudyGroup { get; set; }
 
         public override string ToString()
         {
             dynamic jsonObject = new JObject();
-            jsonObject.id = id;
-            jsonObject.email = email;
-            jsonObject.fullName = fullName;
-            jsonObject.studyYear = studyYear;
-            jsonObject.studyGroup = studyGroup;
+            jsonObject.Id = Id;
+            jsonObject.Email = Email;
+            jsonObject.FullName = FullName;
+            jsonObject.StudyYear = StudyYear;
+            jsonObject.StudyGroup = StudyGroup;
             return jsonObject.ToString(Newtonsoft.Json.Formatting.None);
         }
     }

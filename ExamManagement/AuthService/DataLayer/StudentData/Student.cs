@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AuthService.DataLayer
 {
@@ -9,21 +6,21 @@ namespace AuthService.DataLayer
     {
         public Student(string id, string email, string passwordBase, string passwordHash, string fullName, int studyYear, string studyGroup)
         {
-            this.id = id;
-            this.email = email;
-            this.passwordBase = passwordBase;
-            this.passwordHash = passwordHash;
-            this.fullName = fullName;
-            this.studyYear = studyYear;
-            this.studyGroup = studyGroup;
+            this.Id = id;
+            this.Email = email;
+            this.PasswordBase = passwordBase;
+            this.PasswordHash = passwordHash;
+            this.PullName = fullName;
+            this.StudyYear = studyYear;
+            this.StudyGroup = studyGroup;
         }
 
-        public String id { get; set; }
-        public String email { get; set; }
-        public String passwordBase { get; set; }
-        public String passwordHash { get; set; }
-        public String fullName { get; set; }
-        public int studyYear { get; set; }
-        public String studyGroup { get; set; }
+        public string Id { get; set; }
+        public string Email { get; set; }
+        public string PasswordBase { get; set; }
+        public string PasswordHash { get; set; }
+        public string PullName { get; set; }
+        public int StudyYear { get; set; }
+        public string StudyGroup { get; set; }
     }
 }
