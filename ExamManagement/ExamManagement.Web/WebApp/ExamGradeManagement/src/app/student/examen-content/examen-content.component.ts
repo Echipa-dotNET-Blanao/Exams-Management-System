@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
-
+import { Exam } from '../../shared/models/exam';
 
 @Component({
   selector: 'app-examen-content',
@@ -10,6 +10,10 @@ import { StudentService } from 'src/app/services/student.service';
 })
 export class ExamenContentComponent implements OnInit {
 
+  exams:Exam[];
+  @Input()
+  studentId:string;
+
   constructor(private studServ:StudentService) { }
 
   ngOnInit() {
@@ -17,10 +21,11 @@ export class ExamenContentComponent implements OnInit {
   }
 
   async getAllExamsForStudent(userId:string) {
-    console.log("a intrat");
+
     var result = await this.studServ.getAllStudentExams(userId);
-    console.log(result);
-    
+    this.exams=result;
+    console.log(this.exams);
+    console.log(this.studentId);
   }
 
 }
