@@ -6,7 +6,7 @@ using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
 namespace ExamManagement.Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ExamsController : Controller
     {
