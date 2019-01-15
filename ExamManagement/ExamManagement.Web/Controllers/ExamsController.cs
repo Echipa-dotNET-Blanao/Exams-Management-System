@@ -38,7 +38,7 @@ namespace ExamManagement.Web.Controllers
         }
 
         [HttpGet]
-        [Route("/Student")]
+        [Route("[controller]/Student")]
         public JsonResult GetAllExamsOfStudent([FromQuery] GetAllStudentExamsRequest getAllStudentExamsRequest)
         {
             return Json(_examService.GetAllStudentExams(getAllStudentExamsRequest.StudentId));
