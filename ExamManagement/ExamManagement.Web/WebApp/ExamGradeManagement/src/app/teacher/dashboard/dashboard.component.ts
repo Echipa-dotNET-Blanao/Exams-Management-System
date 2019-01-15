@@ -17,6 +17,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/login']);
   }
   async showTeacherName(){
+
+    const result = await this.teacherService.getTeacherInfo(1);
+    console.log(result);
+    return result;
     
   }
 }
