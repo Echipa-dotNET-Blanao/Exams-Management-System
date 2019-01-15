@@ -21,8 +21,8 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
   }
 
-  async makePostRequest(id : string, password : string) {
-    this.loggedUser = await this.loginService.makeLogin(id, password);
+  async getLogin(id : string, password : string) {
+    this.loggedUser = await this.loginService.getUserDetails(id, password);
     this.chekIfStudentOrProf(this.loggedUser);
   }
 
@@ -31,7 +31,6 @@ export class AuthComponent implements OnInit {
       user.isStudent=true;
       this.router.navigate(['/student-dashboard']);
       this.studentId.emit(user.id);
-
     }
     else{
       user.isStudent=false;
