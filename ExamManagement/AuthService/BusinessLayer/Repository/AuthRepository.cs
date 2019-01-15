@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using System;
 using AuthService.DataLayer.Management;
 using AuthService.Requests;
 
@@ -16,25 +14,45 @@ namespace AuthService.BusinessLayer.Repository
             this.applicationContext = applicationContext;
         }
 
-        public AuthStudentResponse retriveLoggedStudentInformation(AuthStudentRequest authStudentRequest)
+        public AuthStudentResponse RetriveLoggedStudentInformation(AuthRequest authStudentRequest)
         {
             AuthStudentResponse responseStudent = null;
-            if (studentExists(authStudentRequest) == true)
+            if (StudentExists(authStudentRequest) == true)
             {
-                var dbStudent = applicationContext.Students.First(s => s.id == authStudentRequest.Id && s.passwordBase == authStudentRequest.Password);
-                string id = dbStudent.id;
-                string email = dbStudent.email;
-                string fullName = dbStudent.fullName;
-                int studyYear = dbStudent.studyYear;
-                string studyGroup = dbStudent.studyGroup;
+                var dbStudent = applicationContext.Students.First(s => s.Id == authStudentRequest.Username && s.PasswordBase == authStudentRequest.Password);
+                string id = dbStudent.Id;
+                string email = dbStudent.Email;
+                string fullName = dbStudent.PullName;
+                int studyYear = dbStudent.StudyYear;
+                string studyGroup = dbStudent.StudyGroup;
                 responseStudent = new AuthStudentResponse(id, email, fullName, studyYear, studyGroup);
             }
             return responseStudent;
         }
 
-        public bool studentExists(AuthStudentRequest authStudentRequest)
+        public AuthTeacherResponse RetriveLoggedTeacherInformation(AuthRequest authStudentRequest)
         {
-            var dbStudent = applicationContext.Students.First(s => s.id == authStudentRequest.Id && s.passwordBase == authStudentRequest.Password);
+            AuthTeacherResponse responseStudent = null;
+            if (TeacherExists(authStudentRequest) == true)
+            {
+                var dbStudent = applicationContext.Teachers.First(s => s.Email == authStudentRequest.Username && s.PasswordBase == authStudentRequest.Password);
+                int id = dbStudent.Id;
+                string email = dbStudent.Email;
+                string fullName = dbStudent.FullName;
+                responseStudent = new AuthTeacherResponse(id, email, fullName);
+            }
+            return responseStudent;
+        }
+
+        public bool StudentExists(AuthRequest authStudentRequest)
+        {
+            var dbStudent = applicationContext.Students.First(s => s.Id == authStudentRequest.Username && s.PasswordBase == authStudentRequest.Password);
+            return dbStudent == null ? false : true;
+        }
+
+        public bool TeacherExists(AuthRequest authStudentRequest)
+        {
+            var dbStudent = applicationContext.Teachers.First(s => s.Email == authStudentRequest.Username && s.PasswordBase == authStudentRequest.Password);
             return dbStudent == null ? false : true;
         }
     }

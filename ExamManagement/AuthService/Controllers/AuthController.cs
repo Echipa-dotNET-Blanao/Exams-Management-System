@@ -8,20 +8,20 @@ namespace AuthService.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class StudentAuthController : ControllerBase
+    public class AuthController : ControllerBase
     {
-        private IStudentAuthService studentAuthService;
+        private IAuthService studentAuthService;
 
-        public StudentAuthController(IStudentAuthService studentAuthService)
+        public AuthController(IAuthService studentAuthService)
         {
             this.studentAuthService = studentAuthService;
         }
 
         [HttpPost]
         [EnableCors("MyPolicy")]
-        public String AuthStudent([FromBody] AuthStudentRequest authStudentRequest)
+        public String AuthStudent([FromBody] AuthRequest authStudentRequest)
         {
-            return studentAuthService.authStudent(authStudentRequest).ToString();
+            return studentAuthService.Auth(authStudentRequest).ToString();
         }
     }
 }

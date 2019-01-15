@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeacherService {
 
-  constructor() { }
+  examUrl : string = 'https://localhost:5001/Grades/All';
+
+  constructor (private http: HttpClient) {}
+
+  async getExamStudents(examId: number): Promise<any> {
+    return this.http.get(this.examUrl + `?examId=${examId}`).toPromise<any>();
+  }
 }

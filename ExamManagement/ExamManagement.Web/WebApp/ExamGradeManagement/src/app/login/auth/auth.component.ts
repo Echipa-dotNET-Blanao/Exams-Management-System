@@ -1,7 +1,7 @@
 import { Component, OnInit,EventEmitter,Output  } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { User } from '../../shared/models/user';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -16,7 +16,7 @@ export class AuthComponent implements OnInit {
   
   loggedUser:User;
 
-  constructor(private loginService : LoginService,private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -26,9 +26,9 @@ export class AuthComponent implements OnInit {
     this.chekIfStudentOrProf(this.loggedUser);
   }
 
-  chekIfStudentOrProf(user:User){
-    if(user.email!='fii.exam.manager@gmail.com'){
-      user.isStudent=true;
+  chekIfStudentOrProf(user: User){
+    if (user.email != 'fii.exam.manager@gmail.com'){
+      user.isStudent = true;
       this.router.navigate(['/student-dashboard']);
       this.studentId.emit(user.id);
     }
@@ -37,5 +37,5 @@ export class AuthComponent implements OnInit {
       this.router.navigate(['/teacher-dashboard']);
     }
   }
-      
+
 }

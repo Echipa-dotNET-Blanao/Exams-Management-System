@@ -2,11 +2,12 @@
 using System.Net.Http;
 using ExamManagement.Core.Interfaces.Services;
 using ExamManagement.Web.Requests;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExamManagement.Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class GradesController : Controller
     {
@@ -33,6 +34,7 @@ namespace ExamManagement.Web.Controllers
 
         [Route("All")]
         [HttpGet]
+        [EnableCors("MyPolicy")]
         public JsonResult GetAllGradesForExam(int examId)
         {
             return Json(_gradeService.GetAllExamGrades(examId));
