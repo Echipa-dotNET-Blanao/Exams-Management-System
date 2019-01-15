@@ -4,12 +4,11 @@ using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces.Services;
 using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
-
 namespace ExamManagement.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExamsController : ControllerBase
+    public class ExamsController : Controller
     {
         private readonly IExamService _examService;
 
@@ -38,12 +37,11 @@ namespace ExamManagement.Web.Controllers
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
-        [HttpPut]
-        public HttpResponseMessage GetAllExamsOfStudent([FromQuery] GetAllStudentExamsRequest getAllStudentExamsRequest)
+        [HttpGet]
+        [Route("/Student")]
+        public JsonResult GetAllExamsOfStudent([FromQuery] GetAllStudentExamsRequest getAllStudentExamsRequest)
         {
-            _examService.GetAllStudentExams(getAllStudentExamsRequest.StudentId);
-
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return Json(_examService.GetAllStudentExams(getAllStudentExamsRequest.StudentId));
         }
     }
 }
