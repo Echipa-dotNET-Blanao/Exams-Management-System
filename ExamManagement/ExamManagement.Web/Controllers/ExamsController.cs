@@ -37,5 +37,13 @@ namespace ExamManagement.Web.Controllers
 
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
+
+        [HttpPut]
+        public HttpResponseMessage GetAllExamsOfStudent([FromQuery] GetAllStudentExamsRequest getAllStudentExamsRequest)
+        {
+            _examService.GetAllStudentExams(getAllStudentExamsRequest.StudentId);
+
+            return new HttpResponseMessage(HttpStatusCode.OK);
+        }
     }
 }

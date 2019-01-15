@@ -1,5 +1,6 @@
 ﻿using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces.Enums;
+using System.Collections.Generic;
 
 namespace ExamManagement.Core.Interfaces.Services
 {
@@ -10,5 +11,6 @@ namespace ExamManagement.Core.Interfaces.Services
         void CloseExam(int examId);
         void PublishGrades(int examId);
         void ManageExam(int examId, ManageExamTask task);
+        List<StudentExam> GetAllStudentExams(string studentId);
     }
 }

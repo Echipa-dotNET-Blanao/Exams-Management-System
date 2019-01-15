@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces.Enums;
 using ExamManagement.Core.Interfaces.Repositories;
@@ -123,6 +124,11 @@ namespace ExamManagement.Services
                 default:
                     throw new ArgumentOutOfRangeException(nameof(task), task, null);
             }
+        }
+        
+        List<StudentExam> IExamService.GetAllStudentExams(string studentId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
