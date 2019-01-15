@@ -6,7 +6,7 @@ using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
 namespace ExamManagement.Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ExamsController : Controller
     {
@@ -38,7 +38,7 @@ namespace ExamManagement.Web.Controllers
         }
 
         [HttpGet]
-        [Route("/Student")]
+        [Route("[controller]/Student")]
         public JsonResult GetAllExamsOfStudent([FromQuery] GetAllStudentExamsRequest getAllStudentExamsRequest)
         {
             return Json(_examService.GetAllStudentExams(getAllStudentExamsRequest.StudentId));
