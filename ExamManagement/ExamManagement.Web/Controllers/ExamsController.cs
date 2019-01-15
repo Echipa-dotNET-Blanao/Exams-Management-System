@@ -36,12 +36,12 @@ namespace ExamManagement.Web.Controllers
 
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
-
+        
         [HttpGet]
         [Route("Student")]
-        public JsonResult GetAllExamsOfStudent([FromQuery] GetAllStudentExamsRequest getAllStudentExamsRequest)
+        public JsonResult GetAllExamsOfStudent(string studentId)
         {
-            return Json(_examService.GetAllStudentExams(getAllStudentExamsRequest.StudentId));
+            return Json(_examService.GetAllStudentExams(studentId));
         }
     }
 }
