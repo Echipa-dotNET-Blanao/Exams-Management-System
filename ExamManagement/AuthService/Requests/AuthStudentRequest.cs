@@ -7,7 +7,7 @@ namespace AuthService.Requests
 {
     public class AuthStudentRequest
     {
-        public String id { get; set; }
-        public String password { get; set; }
+        public string Id { get; set; }
+        public string Password { get; set; }
     }
 }

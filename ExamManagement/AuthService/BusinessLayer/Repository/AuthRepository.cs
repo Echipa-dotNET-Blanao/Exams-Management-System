@@ -21,7 +21,7 @@ namespace AuthService.BusinessLayer.Repository
             AuthStudentResponse responseStudent = null;
             if (studentExists(authStudentRequest) == true)
             {
-                var dbStudent = applicationContext.Students.First(s => s.id == authStudentRequest.id && s.passwordBase == authStudentRequest.password);
+                var dbStudent = applicationContext.Students.First(s => s.id == authStudentRequest.Id && s.passwordBase == authStudentRequest.Password);
                 string id = dbStudent.id;
                 string email = dbStudent.email;
                 string fullName = dbStudent.fullName;
@@ -34,7 +34,7 @@ namespace AuthService.BusinessLayer.Repository
 
         public bool studentExists(AuthStudentRequest authStudentRequest)
         {
-            var dbStudent = applicationContext.Students.First(s => s.id == authStudentRequest.id && s.passwordBase == authStudentRequest.password);
+            var dbStudent = applicationContext.Students.First(s => s.id == authStudentRequest.Id && s.passwordBase == authStudentRequest.Password);
             return dbStudent == null ? false : true;
         }
     }

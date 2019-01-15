@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
+
+import { HomeContentComponent } from './home-content/home-content.component';
+import { ExamenContentComponent } from './examen-content/examen-content.component';
+import { IstoricExamenContentComponent } from './istoric-examen-content/istoric-examen-content.component';
+import { ContestatiiContentComponent } from './contestatii-content/contestatii-content.component';
 
 @NgModule({
-  declarations: [StudentDashboardComponent],
+  declarations: [ HomeContentComponent, ExamenContentComponent, IstoricExamenContentComponent, ContestatiiContentComponent],
   imports: [
     CommonModule
   ],
   exports: [
-    StudentDashboardComponent,
   ]
 })
 export class StudentModule { }

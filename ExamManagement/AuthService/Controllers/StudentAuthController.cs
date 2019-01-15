@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace AuthService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class StudentAuthController : ControllerBase
     {
@@ -22,15 +22,6 @@ namespace AuthService.Controllers
             this.studentAuthService = studentAuthService;
         }
 
-        // GET: api/StudentAuth
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-
-        // POST: api/StudentAuth
         [HttpPost]
         [EnableCors("MyPolicy")]
         public String AuthStudent([FromBody] AuthStudentRequest authStudentRequest)
