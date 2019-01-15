@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-using Microsoft.Extensions.Options;
 using AuthService.DataLayer.Management;
 using AuthService.BusinessLayer.Repository;
 using AuthService.BusinessLayer.Service;
@@ -37,7 +32,7 @@ namespace AuthService
            }));
             services.AddScoped<DbContext, ApplicationContext>();
             services.AddTransient<IAuthRepository, AuthRepository>();
-            services.AddScoped<IStudentAuthService, StudentAuthService>();
+            services.AddScoped<IAuthService, AuthServiceImpl>();
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
