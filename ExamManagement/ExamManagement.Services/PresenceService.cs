@@ -8,11 +8,13 @@ namespace ExamManagement.Services
     {
         private readonly IExamRepository _examRepository;
         private readonly IGradeRepository _gradeRepository;
+        private readonly IGradeService _gradeService;
 
-        public PresenceService(IGradeRepository gradeRepository, IExamRepository examRepository)
+        public PresenceService(IGradeRepository gradeRepository, IExamRepository examRepository, IGradeService gradeService)
         {
             _examRepository = examRepository;
             _gradeRepository = gradeRepository;
+            _gradeService = gradeService;
         }
 
         public void MarkStudentPresent(string studentId, int examId, string token)
@@ -24,7 +26,7 @@ namespace ExamManagement.Services
 
             if (examToken == token)
             {
-                var studentGrade = new GradeService(_gradeRepository).GetGradeByStudentId(studentId, examId);
+                var studentGrade = _gradeService.GetGradeByStudentId(studentId, examId);
                 studentGrade.Present = true;
                 _gradeRepository.Update(studentGrade.Id, studentGrade);
             }

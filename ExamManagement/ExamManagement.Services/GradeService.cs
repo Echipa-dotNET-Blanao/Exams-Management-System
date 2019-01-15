@@ -9,10 +9,15 @@ namespace ExamManagement.Services
     public class GradeService : IGradeService
     {
         private readonly IGradeRepository _gradeRepository;
+        private readonly IExamRepository _examRepository;
+        private readonly IStudentRepository _studentRepository;
 
-        public GradeService(IGradeRepository gradeRepository)
+        public GradeService(IGradeRepository gradeRepository, IExamRepository examRepository,
+            IStudentRepository studentRepository)
         {
             _gradeRepository = gradeRepository;
+            _examRepository = examRepository;
+            _studentRepository = studentRepository;
         }
 
         // Defensive coding -> move logic from controller to service
@@ -48,6 +53,31 @@ namespace ExamManagement.Services
         public Grade GetGradeByGradeId(int gradeId)
         {
             return _gradeRepository.GetById(gradeId);
+        }
+
+        public List<TeacherGrade> GetAllExamGrades(int examId)
+        {
+            var teacherGrades = new List<TeacherGrade>();
+            var exam = _examRepository.GetById(examId);
+            foreach (var grade in _gradeRepository.GetAll())
+            {
+                if (grade.ExamId == exam.Id)
+                {
+                    foreach (var student in _studentRepository.GetAll())
+                    {
+                        if (student.Id == grade.StudentId)
+                        {
+                            var teacherGrade = new TeacherGrade();
+                            teacherGrade.StudentId = student.Id;
+                            teacherGrade.GradeValue = grade.GradeValue;
+                            teacherGrade.StudentName = student.FullName;
+                            teacherGrades.Add(teacherGrade);
+                            break;
+                        }
+                    }
+                }
+            }
+            return teacherGrades;
         }
     }
 }

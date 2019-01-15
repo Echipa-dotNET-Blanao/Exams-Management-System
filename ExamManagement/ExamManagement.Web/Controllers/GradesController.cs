@@ -30,5 +30,12 @@ namespace ExamManagement.Web.Controllers
         {
             return Json(_gradeService.GetGradeByStudentId(getGradeRequest.StudentId, getGradeRequest.ExamId));
         }
+
+        [Route("All")]
+        [HttpGet]
+        public JsonResult GetAllGradesForExam(int examId)
+        {
+            return Json(_gradeService.GetAllExamGrades(examId));
+        }
     }
 }
