@@ -37,9 +37,9 @@ namespace ExamManagement.Services
 
             foreach (var stud in _studentRepository.GetAll())
                 foreach (var course in _courseRepository.GetAll())
-                    if (stud.StudyYear == course.StudyYear && course.Id == exam.Id)
+                    if (stud.StudyYear == course.StudyYear && course.Id == exam.CourseId)
                     {
-                        var grade = new Grade(stud.Id, exam.CourseId, 0, 0);
+                        var grade = new Grade(stud.Id, exam.Id, 0, 0);
                         _gradeRepostory.Add(grade);
                     }
         }
