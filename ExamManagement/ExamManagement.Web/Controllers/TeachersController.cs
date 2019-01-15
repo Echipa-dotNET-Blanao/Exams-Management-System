@@ -1,6 +1,4 @@
-﻿using System.Net;
-using System.Net.Http;
-using ExamManagement.Core.Interfaces.Services;
+﻿using ExamManagement.Core.Interfaces.Services;
 using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
 

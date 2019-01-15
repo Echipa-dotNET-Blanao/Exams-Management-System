@@ -4,12 +4,11 @@ using ExamManagement.Core.Entities;
 using ExamManagement.Core.Interfaces.Services;
 using ExamManagement.Web.Requests;
 using Microsoft.AspNetCore.Mvc;
-
 namespace ExamManagement.Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
-    public class ExamsController : ControllerBase
+    public class ExamsController : Controller
     {
         private readonly IExamService _examService;
 
@@ -36,6 +35,13 @@ namespace ExamManagement.Web.Controllers
             _examService.ManageExam(manageExamRequest.ExamId, manageExamRequest.Task);
 
             return new HttpResponseMessage(HttpStatusCode.OK);
+        }
+        
+        [HttpGet]
+        [Route("Student")]
+        public JsonResult GetAllExamsOfStudent(string studentId)
+        {
+            return Json(_examService.GetAllStudentExams(studentId));
         }
     }
 }
