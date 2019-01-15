@@ -1,4 +1,5 @@
 ﻿using ExamManagement.Core.Entities;
+using System.Collections.Generic;
 
 namespace ExamManagement.Core.Interfaces.Services
 {
@@ -8,5 +9,6 @@ namespace ExamManagement.Core.Interfaces.Services
         void CreateGrade(Grade grade);
         void SetGrade(int gradeId, float value);
         Grade GetGradeByGradeId(int gradeId);
+        List<TeacherGrade> GetAllExamGrades(int examId);
     }
 }

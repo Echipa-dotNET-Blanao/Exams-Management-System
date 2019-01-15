@@ -8,4 +8,10 @@ namespace ExamManagement.Core.Entities
         public string FullName { get; set; }
         public List<Course> Courses { get; set; }
     }
+    public class TeacherGrade
+    {
+        public string StudentId { get; set; }
+        public string StudentName { get; set; }
+        public float GradeValue { get; set; }
+    }
 }
