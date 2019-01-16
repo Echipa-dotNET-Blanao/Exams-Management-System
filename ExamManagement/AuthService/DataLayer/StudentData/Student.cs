@@ -1,25 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
 
-namespace Entities
+namespace AuthService.DataLayer
 {
     public class Student
     {
-        public Student(string id, string email, string fullName, int studyYear, string studyGroup)
+        public Student(string id, string email, string passwordBase, string passwordHash, string fullName, int studyYear, string studyGroup)
         {
-            Id = id;
-            Email = email;
-            FullName = fullName;
-            StudyYear = studyYear;
-            StudyGroup = studyGroup;
+            this.Id = id;
+            this.Email = email;
+            this.PasswordBase = passwordBase;
+            this.PasswordHash = passwordHash;
+            this.PullName = fullName;
+            this.StudyYear = studyYear;
+            this.StudyGroup = studyGroup;
         }
 
-        [Key] public string Id { set; get; }
-
-        public string Email { set; get; }
-        public string PasswordBase { set; get; }
-        public string PasswordHash { set; get; }
-        public string FullName { set; get; }
-        public int StudyYear { set; get; }
-        public string StudyGroup { set; get; }
+        public string Id { get; set; }
+        public string Email { get; set; }
+        public string PasswordBase { get; set; }
+        public string PasswordHash { get; set; }
+        public string PullName { get; set; }
+        public int StudyYear { get; set; }
+        public string StudyGroup { get; set; }
     }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherService } from 'src/app/services/teacher.service';
 import { Router } from '@angular/router';
+import { JSONP_ERR_WRONG_METHOD } from '@angular/common/http/src/jsonp';
+import { HttpClientJsonpModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +11,7 @@ import { Router } from '@angular/router';
   providers: [TeacherService]
 })
 export class DashboardComponent implements OnInit {
+  teacherName:string;
   constructor(private teacherService : TeacherService,private router: Router) { }
 
   ngOnInit() {
@@ -19,7 +22,10 @@ export class DashboardComponent implements OnInit {
   async showTeacherName(){
     console.log("I'm in");
     const result = await this.teacherService.getTeacherInfo(1);
+    const resp = JSON.parse(JSON.stringify(result));
+    console.log(resp);
     console.log(result);
+    this.teacherName = resp["fullName"];
     return result;
     
   }
