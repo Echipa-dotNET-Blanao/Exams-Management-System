@@ -8,6 +8,22 @@
       
       
     <div class="content">
-      examene
+      <ng-container *ngFor="let index of exams">
+        <div class="blog-card">
+          <div class="meta">
+            <div class="photo" style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-2.jpg)"></div>
+           
+          </div>
+          <div class="description">
+            <h1>{{index.courseName}}</h1>
+            <h2>sala {{index.room}}</h2>
+            <h2>data {{index.startTime | date:'medium'}}</h2>
+            <h2>profesorul {{index.teacherName}}</h2>
+            <p>Adresa spre CorrectionLink - {{index.correctionScoreLink}}</p>
+            <p>Media notelor - {{index.medianGrade}}</p>
+            <p>Data de sfarsit a contestatiilor - {{index.reevaluationEndTime| date:'medium' }}</p>
+          </div>
+        </div>
+      </ng-container>
     </div>
   </div>

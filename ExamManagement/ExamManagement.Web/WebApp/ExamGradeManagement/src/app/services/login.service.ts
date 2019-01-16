@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
 
-  loginUrl : string = "http://localhost:51861/StudentAuth";
+  loginUrl : string = "http://localhost:51861/Auth";
 
   constructor(private http: HttpClient) { }
 

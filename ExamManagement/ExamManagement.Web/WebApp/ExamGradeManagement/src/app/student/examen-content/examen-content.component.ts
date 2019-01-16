@@ -15,16 +15,14 @@ export class ExamenContentComponent implements OnInit {
   constructor(private studServ:StudentService) { }
 
   ngOnInit() {
-    this.getAllExamsForStudent('JCPD2JFUEOJF2KFJ9');
+    this.getAllExamsForStudent('JCPD2JFUEO20DKFJ9');
   }
 
 
 
   async getAllExamsForStudent(userId:string) {
-
     var result = await this.studServ.getAllStudentExams(userId);
     this.exams=result;
-    console.log(this.exams);
   }
 
 }
