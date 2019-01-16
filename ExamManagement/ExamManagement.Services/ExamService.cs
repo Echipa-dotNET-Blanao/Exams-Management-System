@@ -187,5 +187,15 @@ namespace ExamManagement.Services
             }
             return studentExams;
         }
+
+        public List<StudentExam> GetFutureStudentExams(string studentId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<StudentExam> GetPastStudentExams(string studentId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

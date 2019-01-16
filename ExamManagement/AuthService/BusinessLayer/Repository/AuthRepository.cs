@@ -27,6 +27,7 @@ namespace AuthService.BusinessLayer.Repository
                 int studyYear = dbStudent.StudyYear;
                 string studyGroup = dbStudent.StudyGroup;
                 responseStudent = new AuthStudentResponse(id, email, fullName, studyYear, studyGroup);
+                responseStudent.IsStudent = true;
             }
             return responseStudent;
         }
@@ -41,6 +42,7 @@ namespace AuthService.BusinessLayer.Repository
                 string email = dbStudent.Email;
                 string fullName = dbStudent.FullName;
                 responseStudent = new AuthTeacherResponse(id, email, fullName);
+                responseStudent.IsStudent = false;
             }
             return responseStudent;
         }
