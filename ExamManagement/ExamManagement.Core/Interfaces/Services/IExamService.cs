@@ -14,5 +14,6 @@ namespace ExamManagement.Core.Interfaces.Services
         List<StudentExam> GetAllStudentExams(string studentId);
         List<StudentExam> GetFutureStudentExams(string studentId);
         List<StudentExam> GetPastStudentExams(string studentId);
+        List<TeacherExam> GetAllTeacherExams(int studentId);
     }
 }

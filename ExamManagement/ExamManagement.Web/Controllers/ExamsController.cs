@@ -37,6 +37,14 @@ namespace ExamManagement.Web.Controllers
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
+
+        [HttpGet]
+        [Route("Teacher")]
+        public JsonResult GetAllExamsOfTeacher(int teacherId)
+        {
+            return Json(_examService.GetAllTeacherExams(teacherId));
+        }
+
         [HttpGet]
         [Route("Student")]
         public JsonResult GetAllExamsOfStudent(string studentId)
