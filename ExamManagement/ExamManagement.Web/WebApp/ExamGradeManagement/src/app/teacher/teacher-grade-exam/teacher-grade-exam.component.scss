@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
+body{
+  margin: 0;
+}
+
 .containter {
   width: 100%;
   height: 100%;
@@ -11,16 +15,16 @@
 .content {
   width: 80%;
   float: right;
-  position: absolute;
-  padding-left: 15em;
+  //padding-left: 15em;
   z-index: 1;
   text-align: center;
   align: center;
+  position: absolute;
 }
 
 .background-image {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   filter: blur(5px);
   background-position: center center;
   background-size: cover;
@@ -28,6 +32,8 @@
   padding: 0;
   overflow: hidden;
   background-image: url('../../../assets/images/teacher.png');
+  position: absolute;
+  z-index: -1;
 }
 
 .sidebar {
@@ -60,14 +66,15 @@
 }
 
 .student-grade{
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
+  position: relative;
+  margin-left: 15em;
+  //margin-right: auto;
   //top: 50%;
   //left: 50%;
   //margin: -150px 0 0 -150px;
-  width:600px;
+  width:100%;
   height:600px;
+  text-align: center;
 }
 
 input {
@@ -105,6 +112,9 @@ input.placeholder{
 .btn-block { width: 100%; display:block; margin: auto;}
 
 table{
-  margin-left: auto;
+  position: relative;
+  margin-top: 37px;
   margin-right: auto;
+  margin-left: auto;
+
 }

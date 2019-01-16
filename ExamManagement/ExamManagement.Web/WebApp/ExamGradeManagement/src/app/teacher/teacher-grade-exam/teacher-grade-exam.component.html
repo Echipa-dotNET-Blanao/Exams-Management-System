@@ -22,16 +22,10 @@
 
   <div class="content">
 
-    <div class="student-name">
-      <p>Student Name</p>
-    </div>
-
-    <hr>
-
     <div class="student-grade">
 
-      <table width="100%">
-        <tr>
+      <table width="40%">
+        <tr style="background-color: white">
           <th>Index</th>
           <th>Numar Matricol</th>
           <th>Nume Student</th>
@@ -40,7 +34,7 @@
         </tr>
         <ng-container *ngFor="let index of grade; let i = index" >
 
-          <tr>
+          <tr style="background-color: white">
             <td>{{i + 1}}</td>
             <td>{{index.studentId}}</td>
             <td>{{index.studentName}}</td>

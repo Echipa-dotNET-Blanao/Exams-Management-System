@@ -21,12 +21,12 @@ export class AuthComponent implements OnInit {
 
   async getLogin(id : string, password : string) {
     this.loggedUser = await this.loginService.getUserDetails(id, password);
+    this.checkIfStudentOrProf();
     this.cookieService.set( 'Username', this.loggedUser.id );
-    this.chekIfStudentOrProf(this.loggedUser);
-  }
+}
 
-  chekIfStudentOrProf(user: User){
-    if (user.isStudent){
+  checkIfStudentOrProf(){
+    if (this.loggedUser.isStudent){
       this.router.navigate(['/student-dashboard']);
     }
     else{
