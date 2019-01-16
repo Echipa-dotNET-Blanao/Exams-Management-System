@@ -35,7 +35,7 @@ export class TeacherGradeExamComponent implements OnInit {
 
   async getTeacherName(teacherId: number) {
     const result = await this.tchServ.getTeacherInfo(teacherId);
-    this.teacherName = result;
+    this.teacherName = result['fullName'];
   }
 
 }
