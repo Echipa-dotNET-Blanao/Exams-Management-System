@@ -12,7 +12,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   async getUserDetails(login: string, pass: string): Promise<any>  {
-    const body = {id: login, password: pass};
+    const body = {username: login, password: pass};
     return this.http.post(this.loginUrl, body).toPromise<any>();
  } 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit,EventEmitter,Output  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { User } from '../../shared/models/user';
 import { Router } from '@angular/router';
@@ -10,9 +10,6 @@ import { Router } from '@angular/router';
   providers : [LoginService]
 })
 export class AuthComponent implements OnInit {
-
-  @Output()
-  studentId = new EventEmitter();
   
   loggedUser:User;
 
@@ -27,13 +24,10 @@ export class AuthComponent implements OnInit {
   }
 
   chekIfStudentOrProf(user: User){
-    if (user.email != 'fii.exam.manager@gmail.com'){
-      user.isStudent = true;
+    if (user.isStudent){
       this.router.navigate(['/student-dashboard']);
-      this.studentId.emit(user.id);
     }
     else{
-      user.isStudent=false;
       this.router.navigate(['/teacher-dashboard']);
     }
   }
