@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { User } from '../../shared/models/user';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-auth',
@@ -13,7 +14,7 @@ export class AuthComponent implements OnInit {
   
   loggedUser:User;
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit() {
   }
@@ -21,8 +22,8 @@ export class AuthComponent implements OnInit {
   async getLogin(id : string, password : string) {
     this.loggedUser = await this.loginService.getUserDetails(id, password);
     this.checkIfStudentOrProf();
-    
-  }
+    this.cookieService.set( 'Username', this.loggedUser.id );
+}
 
   checkIfStudentOrProf(){
     if (this.loggedUser.isStudent){

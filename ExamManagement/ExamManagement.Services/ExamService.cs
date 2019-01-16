@@ -130,6 +130,45 @@ namespace ExamManagement.Services
             }
         }
 
+        public List<TeacherExam> GetAllTeacherExams(int teacherId)
+        {
+            var teacherExams = new List<TeacherExam>();
+            var teacher = _teacherRepository.GetById(teacherId);
+            foreach (var didactic in _didacticRepository.GetAll())
+            {
+                foreach (var exam in _examRepository.GetAll())
+                {
+                    if (exam.CourseId == didactic.CourseId && teacherId == didactic.TeacherId)
+                    {
+                        var teacherExam = new TeacherExam();
+                        teacherExam.CourseId = exam.CourseId;
+                        teacherExam.CorrectionScoreLink = "www.google.com";
+                        teacherExam.CorrectionScorePublished = exam.CorrectionScorePublished;
+                        teacherExam.EndTime = exam.EndTime;
+                        teacherExam.Finished = exam.Finished;
+                        teacherExam.GradesPublished = exam.GradesPublished;
+                        teacherExam.Id = exam.Id;
+                        teacherExam.MedianGrade = 0;
+                        teacherExam.CourseId = exam.CourseId;
+                        teacherExam.ReevaluationEndTime = exam.ReevaluationEndDate;
+                        teacherExam.Room = exam.Room;
+                        teacherExam.Started = exam.Started;
+                        teacherExam.StartTime = exam.StartTime;
+                        foreach (var course in _courseRepository.GetAll())
+                        {
+                            if (course.Id == didactic.CourseId)
+                            {
+                                teacherExam.CourseName = course.Title;
+                                break;
+                            }
+                        }
+                        teacherExams.Add(teacherExam);
+                    }
+                }
+            }
+           
+            return teacherExams;
+        }
         public List<StudentExam> GetAllStudentExams(string studentId)
         {
             var studentExams = new List<StudentExam>();
@@ -306,6 +345,11 @@ namespace ExamManagement.Services
 
             }
             return studentExams;
+        }
+
+        public List<TeacherExam> GetAllTeacherExams(string studentId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
