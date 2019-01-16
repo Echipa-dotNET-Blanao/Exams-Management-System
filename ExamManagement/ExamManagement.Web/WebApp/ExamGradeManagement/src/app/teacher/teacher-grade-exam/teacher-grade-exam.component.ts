@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../../services/teacher.service';
+import { Grade } from '../../shared/models/grade';
+import { Teacher } from '../../shared/models/teacher';
 
 @Component({
   selector: 'app-teacher-grade-exam',
@@ -9,17 +11,31 @@ import { TeacherService } from '../../services/teacher.service';
 })
 export class TeacherGradeExamComponent implements OnInit {
 
+  grade: Grade[];
+  teacherName: Teacher[];
+
   constructor(private tchServ: TeacherService) { }
 
   ngOnInit() {
     this.getExams(22);
+    this.getTeacherName(2);
   }
 
   async getExams(examId: number) {
-    console.log("a intrat");
+
     const result = await this.tchServ.getExamStudents(examId);
-    console.log(result);
-    return result;
+    this.grade = result;
+  }
+
+  sendGrade(newGrade: number) {
+    if (newGrade) {
+      console.log(newGrade);
+    }
+  }
+
+  async getTeacherName(teacherId: number) {
+    const result = await this.tchServ.getTeacherInfo(teacherId);
+    this.teacherName = result['fullName'];
   }
 
 }
