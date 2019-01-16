@@ -25,11 +25,14 @@ export class TeacherGradeExamComponent implements OnInit {
 
     const result = await this.tchServ.getExamStudents(examId);
     this.grade = result;
+    console.log(result);
   }
 
-  sendGrade(newGrade: number) {
-    if (newGrade) {
-      console.log(newGrade);
+  sendGrade(newGrade: number, gradeId: number) {
+    if (newGrade <= 10 || newGrade >= 1) {
+      console.log(newGrade, gradeId);
+      this.tchServ.updateGrade(gradeId, newGrade);
+
     }
   }
 
