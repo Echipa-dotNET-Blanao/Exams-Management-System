@@ -10,18 +10,18 @@ namespace AuthService.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private IAuthService studentAuthService;
+        private IAuthService _studentAuthService;
 
         public AuthController(IAuthService studentAuthService)
         {
-            this.studentAuthService = studentAuthService;
+            this._studentAuthService = studentAuthService;
         }
 
         [HttpPost]
         [EnableCors("MyPolicy")]
         public String AuthStudent([FromBody] AuthRequest authStudentRequest)
         {
-            return studentAuthService.Auth(authStudentRequest).ToString();
+            return _studentAuthService.Auth(authStudentRequest).ToString();
         }
     }
 }
