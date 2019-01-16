@@ -8,6 +8,7 @@ import { IstoricExamenContentComponent } from './student/istoric-examen-content/
 import { HomeContentComponent } from './student/home-content/home-content.component';
 import { ExamenContentComponent } from './student/examen-content/examen-content.component';
 import { ContestatiiContentComponent } from './student/contestatii-content/contestatii-content.component';
+import { CreateExamComponent } from './teacher/create-exam/create-exam.component';
 
 
 const routes: Routes = [
@@ -48,6 +49,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
+  },
+  {
+    path: 'create-exam',
+    component: CreateExamComponent
   }
 ];
 

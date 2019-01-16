@@ -34,7 +34,7 @@ export class TeacherGradeExamComponent implements OnInit {
   }
 
   sendGrade(newGrade: number, gradeId: number) {
-    if (newGrade <= 10 || newGrade >= 1) {
+    if (newGrade <= 10 && newGrade >= 1) {
       console.log(newGrade, gradeId);
       this.tchServ.updateGrade(gradeId, newGrade);
 
