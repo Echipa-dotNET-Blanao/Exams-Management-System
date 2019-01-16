@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TeacherService {
 
-  examUrl: string = 'https://localhost:44390/Grades/All';
-  teacherUrl = 'https://localhost:44390/Teachers';
+  examUrl : string = 'https://localhost:44390/Grades/All';
+  teacherUrl : string = 'https://localhost:44390/api/Teachers';
 
   constructor (private http: HttpClient) {}
 
@@ -15,11 +15,7 @@ export class TeacherService {
     return this.http.get(this.examUrl + `?examId=${examId}`).toPromise<any>();
   }
 
-  async getTeacherInfo(teacherId: number):Promise<any> {
-    return this.http.get(this.teacherUrl + `?teacherId=${teacherId}`).toPromise<any>();
-  }
-
-  async getTeacherName(teacherId:number):Promise<any>{
-    return this.http.get(this.teacherUrl + `?TeacherId=${teacherId}`).toPromise<any>();
+  async getTeacherInfo(TeacherID: number):Promise<any>{
+    return this.http.get(this.teacherUrl + `?TeacherID=${TeacherID}`).toPromise<any>();
   }
 }

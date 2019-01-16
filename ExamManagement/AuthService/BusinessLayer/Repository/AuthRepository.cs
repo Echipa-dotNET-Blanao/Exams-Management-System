@@ -2,7 +2,6 @@
 using System;
 using AuthService.DataLayer.Management;
 using AuthService.Requests;
-using Entities;
 
 namespace AuthService.BusinessLayer.Repository
 {
@@ -23,10 +22,11 @@ namespace AuthService.BusinessLayer.Repository
                 var dbStudent = applicationContext.Students.First(s => s.Id == authStudentRequest.Username && s.PasswordBase == authStudentRequest.Password);
                 string id = dbStudent.Id;
                 string email = dbStudent.Email;
-                string fullName = dbStudent.FullName;
+                string fullName = dbStudent.PullName;
                 int studyYear = dbStudent.StudyYear;
                 string studyGroup = dbStudent.StudyGroup;
                 responseStudent = new AuthStudentResponse(id, email, fullName, studyYear, studyGroup);
+                responseStudent.IsStudent = true;
             }
             return responseStudent;
         }
@@ -41,13 +41,14 @@ namespace AuthService.BusinessLayer.Repository
                 string email = dbStudent.Email;
                 string fullName = dbStudent.FullName;
                 responseStudent = new AuthTeacherResponse(id, email, fullName);
+                responseStudent.IsStudent = false;
             }
             return responseStudent;
         }
 
         public bool StudentExists(AuthRequest authStudentRequest)
         {
-            Student dbStudent = applicationContext.Students.First(s => s.Id == authStudentRequest.Username && s.PasswordBase == authStudentRequest.Password);
+            var dbStudent = applicationContext.Students.First(s => s.Id == authStudentRequest.Username && s.PasswordBase == authStudentRequest.Password);
             return dbStudent == null ? false : true;
         }
 

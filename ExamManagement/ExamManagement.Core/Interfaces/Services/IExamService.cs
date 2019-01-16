@@ -12,5 +12,7 @@ namespace ExamManagement.Core.Interfaces.Services
         void PublishGrades(int examId);
         void ManageExam(int examId, ManageExamTask task);
         List<StudentExam> GetAllStudentExams(string studentId);
+        List<StudentExam> GetFutureStudentExams(string studentId);
+        List<StudentExam> GetPastStudentExams(string studentId);
     }
 }

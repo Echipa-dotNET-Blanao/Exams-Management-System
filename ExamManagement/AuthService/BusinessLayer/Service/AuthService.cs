@@ -17,7 +17,7 @@ namespace AuthService.BusinessLayer.Service
         {
 
             if (authRequest.Username.Contains('@'))
-            return _authRepository.RetriveLoggedTeacherInformation(authRequest);
+                return _authRepository.RetriveLoggedTeacherInformation(authRequest);
             else
                 return _authRepository.RetriveLoggedStudentInformation(authRequest);
         }
