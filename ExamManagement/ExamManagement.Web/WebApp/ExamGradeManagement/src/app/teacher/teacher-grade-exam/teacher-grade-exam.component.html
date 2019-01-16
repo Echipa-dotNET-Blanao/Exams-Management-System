@@ -1,7 +1,9 @@
 <div class="container">
 
   <div class="sidebar">
-    <span #teacherName>Teacher Name</span>
+    <!--<ng-container *ngFor="let teacher of teacherName">-->
+      <!--<span>{{teacher.FullName}}</span>-->
+    <!--</ng-container>-->
     <hr>
     <div class="sidebar-item">
       <button>Adauga Examene</button>
@@ -29,15 +31,27 @@
     <hr>
 
     <div class="student-grade">
-      <ng-container >
-        {{index}}
-        <input type="number" placeholder="Nota">
-        <button type="submit" class="btn btn-primary btn-block btn-large">Trimite</button>
-      </ng-container>
+
+      <table width="100%">
+        <tr>
+          <th>Numar Matricol</th>
+          <th>Nume Student</th>
+          <th>Actualizati nota?</th>
+          <th>Aplica</th>
+        </tr>
+        <ng-container *ngFor="let index of grade" >
+
+          <tr>
+            <td>{{index.studentId}}</td>
+            <td>{{index.studentName}}</td>
+            <td><input type="number" placeholder="{{index.gradeValue}}" [(ngModel)]="newGrade"></td>
+            <td><button type="submit" class="btn btn-primary btn-block btn-large" (click)="sendGrade(newGrade);">Aplica</button></td>
+          </tr>
+        </ng-container>
+      </table>
     </div>
 
 
   </div>
 
   <div class="background-image"></div>
-</div>
