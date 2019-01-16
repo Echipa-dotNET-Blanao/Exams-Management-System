@@ -12,11 +12,13 @@ import { CookieService } from 'ngx-cookie-service';
 export class ExamenContentComponent implements OnInit {
 
   exams:Exam[];
+  username:string;
   
   constructor(private studServ:StudentService, private cookieService:CookieService) { }
 
   ngOnInit() {
-    this.getAllExamsForStudent(this.cookieService.get('Username'));
+    this.username = this.cookieService.get('Username');
+    this.getAllExamsForStudent(this.username);
   }
 
 
