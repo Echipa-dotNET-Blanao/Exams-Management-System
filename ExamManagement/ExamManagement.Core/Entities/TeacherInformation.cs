@@ -12,6 +12,7 @@ namespace ExamManagement.Core.Entities
     {
         public string StudentId { get; set; }
         public string StudentName { get; set; }
+        public int GradeId { get; set; }
         public float GradeValue { get; set; }
     }
 }

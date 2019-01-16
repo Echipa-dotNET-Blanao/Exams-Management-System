@@ -71,6 +71,7 @@ namespace ExamManagement.Services
                             teacherGrade.StudentId = student.Id;
                             teacherGrade.GradeValue = grade.GradeValue;
                             teacherGrade.StudentName = student.FullName;
+                            teacherGrade.GradeId = grade.Id;
                             teacherGrades.Add(teacherGrade);
                             break;
                         }
