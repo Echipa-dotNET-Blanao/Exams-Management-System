@@ -18,7 +18,8 @@ export class ExamenContentComponent implements OnInit {
 
   ngOnInit() {
     this.username = this.cookieService.get('Username');
-    this.getAllExamsForStudent(this.username);
+    // this.getAllExamsForStudent(this.username);
+    this.getAllExamsForStudent("JCPD2JFUEOJF2KFJ9");
   }
 
 
