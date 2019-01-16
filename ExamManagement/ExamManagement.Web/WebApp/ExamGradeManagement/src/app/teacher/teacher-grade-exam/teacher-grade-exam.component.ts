@@ -22,8 +22,10 @@ export class TeacherGradeExamComponent implements OnInit {
   ngOnInit() {
     this.username = this.cookieService.get('Username');
     this.currentExam = parseInt(this.cookieService.get('CurrentGradeExam'));
-    this.getExams(this.currentExam);
-    this.getTeacherName(parseInt(this.username));
+    // this.getExams(this.currentExam);
+    // this.getTeacherName(parseInt(this.username));
+    this.getExams(22);
+    this.getTeacherName(2);
   }
 
   async getExams(examId: number) {

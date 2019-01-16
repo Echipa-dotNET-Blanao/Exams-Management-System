@@ -34,4 +34,12 @@ export class DashboardComponent implements OnInit {
     return result;
     
   }
+  async goToCreateExam(){
+    this.router.navigate(['/create-exam']);
+    
+  }
+  async goToAdministration(exam: string){
+    this.router.navigate(['/manage-exams']);
+    this.cookieService.set('ManageExam', exam);
+  }
 }

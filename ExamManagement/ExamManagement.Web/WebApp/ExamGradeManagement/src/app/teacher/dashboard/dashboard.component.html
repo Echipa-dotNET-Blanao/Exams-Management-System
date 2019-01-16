@@ -7,17 +7,11 @@
     <hr>
     <h1> Dashboard </h1>
     <div class = "button">
-        <button>Adauga examen</button>
+        <button (click)="goToCreateExam()">Adauga examen</button>
     </div>
     <div class = "button">
-      <button (click)="showTeacherName()">Examen</button>
+      <button (click)="goToAdministration()">Administreaza Examene</button>
       </div>
-    <div class = "button">
-        <button>Istoric Examene</button>
-      </div>  
-    <div class = "button">
-        <button>Contestatii</button>
-      </div> 
     <div class = "lowside">
       <div class = "button">
         <button (click)="logOut()">Log out</button>
