@@ -20,11 +20,12 @@ export class AuthComponent implements OnInit {
 
   async getLogin(id : string, password : string) {
     this.loggedUser = await this.loginService.getUserDetails(id, password);
-    this.chekIfStudentOrProf(this.loggedUser);
+    this.checkIfStudentOrProf();
+    
   }
 
-  chekIfStudentOrProf(user: User){
-    if (user.isStudent){
+  checkIfStudentOrProf(){
+    if (this.loggedUser.isStudent){
       this.router.navigate(['/student-dashboard']);
     }
     else{
