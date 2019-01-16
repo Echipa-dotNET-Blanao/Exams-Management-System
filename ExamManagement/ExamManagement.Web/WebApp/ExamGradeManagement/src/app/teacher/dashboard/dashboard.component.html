@@ -1,27 +1,31 @@
-<p>
-  dashboard works!
-</p>
-<div class="jumbotron">
-  <h1 class="display-3">Jumbo heading</h1>
-  <p class="lead">Jumbo helper text</p>
-  <hr class="my-2">
-  <p>More info</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Jumbo action name</a>
-  </p>
-</div>
- <div class="container">
-   <div class="row">
-     <div class=" col-sm sideMenu">
-       <h1>SideBar</h1>
-     </div>
-     <div class=" col-sm Main">
-      <h1>Main</h1>
+<div class="container"> 
+
+  <div class = "sidebar">
+    <div class = "tname">
+      <h3>My name as a teacher</h3>
     </div>
-   </div>
- </div>
-<div class="list-group">
-  <button type="button" class="list-group-item list-group-item-action active">Active item</button>
-  <button type="button" class="list-group-item list-group-item-action">Item</button>
-  <button type="button" class="list-group-item list-group-item-action disabled">Disabled item</button>
-</div>
+    <hr>
+    <h1> Dashboard </h1>
+    <div class = "button">
+        <button>Adauga examen</button>
+    </div>
+    <div class = "button">
+      <button (click)="showTeacherName()">Examen</button>
+      </div>
+    <div class = "button">
+        <button>Istoric Examene</button>
+      </div>  
+    <div class = "button">
+        <button>Contestatii</button>
+      </div> 
+    <div class = "lowside">
+      <div class = "button">
+        <button (click)="logOut()">Log out</button>
+      </div>
+    </div> 
+  </div>
+  <div class = "content">
+    Content
+  </div>
+  <div class="background-image"></div>
+  </div>
