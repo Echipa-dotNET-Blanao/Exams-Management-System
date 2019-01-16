@@ -5,13 +5,14 @@ namespace AuthService.Requests
 {
     public class AuthStudentResponse : AuthResponse
     {
-        public AuthStudentResponse(string id, string email, string fullName, int studyYear, string studyGroup)
+        public AuthStudentResponse(string id, string email, string fullName, int studyYear, string studyGroup, bool isStudent)
         {
             this.Id = id;
             this.Email = email;
             this.FullName = fullName;
             this.StudyYear = studyYear;
             this.StudyGroup = studyGroup;
+            IsStudent = isStudent;
         }
 
         private String Id { get; set; }
@@ -19,6 +20,7 @@ namespace AuthService.Requests
         private String FullName { get; set; }
         private int StudyYear { get; set; }
         private String StudyGroup { get; set; }
+        public bool IsStudent { get; set; }
 
         public override string ToString()
         {
@@ -28,6 +30,7 @@ namespace AuthService.Requests
             jsonObject.FullName = FullName;
             jsonObject.StudyYear = StudyYear;
             jsonObject.StudyGroup = StudyGroup;
+            jsonObject.IsStudent = IsStudent;
             return jsonObject.ToString(Newtonsoft.Json.Formatting.None);
         }
     }

@@ -7,6 +7,5 @@ namespace AuthService.Requests
 {
     public class AuthResponse
     {
-        public bool IsStudent { get; set; }
     }
 }
