@@ -190,12 +190,122 @@ namespace ExamManagement.Services
 
         public List<StudentExam> GetFutureStudentExams(string studentId)
         {
-            throw new NotImplementedException();
+            var studentExams = new List<StudentExam>();
+            var student = _studentRepository.GetById(studentId);
+            var grades = _gradeRepostory.GetAll();
+            var studentGrades = new List<Grade>();
+            foreach (var grade in grades)
+            {
+                if (grade.StudentId == studentId)
+                {
+                    var studentExam = new StudentExam();
+                    var exam = _examRepository.GetById(grade.ExamId);
+                    if (exam.Finished)
+                        continue;
+                    studentExam.Id = exam.Id;
+                    studentExam.StudentGrade = grade.GradeValue;
+                    studentExam.StartTime = exam.StartTime;
+                    studentExam.EndTime = exam.EndTime;
+                    studentExam.ReevaluationEndTime = exam.ReevaluationEndDate;
+                    studentExam.Started = exam.Started;
+                    studentExam.Finished = exam.Finished;
+                    studentExam.CorrectionScorePublished = exam.CorrectionScorePublished;
+                    studentExam.CorrectionScoreLink = "www.google.com"; //TODO in db
+                    studentExam.GradesPublished = exam.GradesPublished;
+                    studentExam.StudentGrade = grade.GradeValue;
+                    studentExam.MedianGrade = 0f; //TODO
+                    studentExam.Room = exam.Room;
+                    studentExam.Present = grade.Present;
+                    studentExam.ReevaluationClosed = grade.ReevaluationClosed;
+
+                    foreach (var course in _courseRepository.GetAll())
+                    {
+                        if (course.Id == exam.CourseId)
+                        {
+                            studentExam.CourseId = course.Id;
+                            studentExam.CourseName = course.Title;
+                            break;
+                        }
+                    }
+
+                    foreach (var teacher in _teacherRepository.GetAll())
+                    {
+                        foreach (var didactic in _didacticRepository.GetAll())
+                        {
+                            if (teacher.Id == didactic.TeacherId && didactic.CourseId == studentExam.CourseId)
+                            {
+                                studentExam.TeacherID = teacher.Id;
+                                studentExam.TeacherName = teacher.FullName;
+                                break;
+                            }
+                        }
+                    }
+
+                    studentExams.Add(studentExam);
+                }
+
+            }
+            return studentExams;
         }
 
         public List<StudentExam> GetPastStudentExams(string studentId)
         {
-            throw new NotImplementedException();
+            var studentExams = new List<StudentExam>();
+            var student = _studentRepository.GetById(studentId);
+            var grades = _gradeRepostory.GetAll();
+            var studentGrades = new List<Grade>();
+            foreach (var grade in grades)
+            {
+                if (grade.StudentId == studentId)
+                {
+                    var studentExam = new StudentExam();
+                    var exam = _examRepository.GetById(grade.ExamId);
+                    if (!exam.Finished)
+                        continue;
+                    studentExam.Id = exam.Id;
+                    studentExam.StudentGrade = grade.GradeValue;
+                    studentExam.StartTime = exam.StartTime;
+                    studentExam.EndTime = exam.EndTime;
+                    studentExam.ReevaluationEndTime = exam.ReevaluationEndDate;
+                    studentExam.Started = exam.Started;
+                    studentExam.Finished = exam.Finished;
+                    studentExam.CorrectionScorePublished = exam.CorrectionScorePublished;
+                    studentExam.CorrectionScoreLink = "www.google.com"; //TODO in db
+                    studentExam.GradesPublished = exam.GradesPublished;
+                    studentExam.StudentGrade = grade.GradeValue;
+                    studentExam.MedianGrade = 0f; //TODO
+                    studentExam.Room = exam.Room;
+                    studentExam.Present = grade.Present;
+                    studentExam.ReevaluationClosed = grade.ReevaluationClosed;
+
+                    foreach (var course in _courseRepository.GetAll())
+                    {
+                        if (course.Id == exam.CourseId)
+                        {
+                            studentExam.CourseId = course.Id;
+                            studentExam.CourseName = course.Title;
+                            break;
+                        }
+                    }
+
+                    foreach (var teacher in _teacherRepository.GetAll())
+                    {
+                        foreach (var didactic in _didacticRepository.GetAll())
+                        {
+                            if (teacher.Id == didactic.TeacherId && didactic.CourseId == studentExam.CourseId)
+                            {
+                                studentExam.TeacherID = teacher.Id;
+                                studentExam.TeacherName = teacher.FullName;
+                                break;
+                            }
+                        }
+                    }
+
+                    studentExams.Add(studentExam);
+                }
+
+            }
+            return studentExams;
         }
     }
 }

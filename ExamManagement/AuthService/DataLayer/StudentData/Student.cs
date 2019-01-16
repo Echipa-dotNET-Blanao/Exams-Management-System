@@ -10,7 +10,7 @@ namespace AuthService.DataLayer
             this.Email = email;
             this.PasswordBase = passwordBase;
             this.PasswordHash = passwordHash;
-            this.PullName = fullName;
+            this.FullName = fullName;
             this.StudyYear = studyYear;
             this.StudyGroup = studyGroup;
         }
@@ -19,7 +19,7 @@ namespace AuthService.DataLayer
         public string Email { get; set; }
         public string PasswordBase { get; set; }
         public string PasswordHash { get; set; }
-        public string PullName { get; set; }
+        public string FullName { get; set; }
         public int StudyYear { get; set; }
         public string StudyGroup { get; set; }
     }

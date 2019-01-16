@@ -22,7 +22,7 @@ namespace AuthService.BusinessLayer.Repository
                 var dbStudent = applicationContext.Students.First(s => s.Id == authStudentRequest.Username && s.PasswordBase == authStudentRequest.Password);
                 string id = dbStudent.Id;
                 string email = dbStudent.Email;
-                string fullName = dbStudent.PullName;
+                string fullName = dbStudent.FullName;
                 int studyYear = dbStudent.StudyYear;
                 string studyGroup = dbStudent.StudyGroup;
                 responseStudent = new AuthStudentResponse(id, email, fullName, studyYear, studyGroup);

@@ -15,7 +15,6 @@ namespace AuthService.BusinessLayer.Service
 
         public AuthResponse Auth(AuthRequest authRequest)
         {
-            //if (Regex.Matches(authRequest.Username, "[0-9a-zA-Z\\.]@[0-9a-zA-Z\\.]\\.[a-zA-Z\\.]").Count==1)
             if (authRequest.Username.Contains('@'))
                 return _authRepository.RetriveLoggedTeacherInformation(authRequest);
             else
