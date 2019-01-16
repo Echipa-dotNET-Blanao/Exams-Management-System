@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../../services/teacher.service';
 import { Grade } from '../../shared/models/grade';
 import { Teacher } from '../../shared/models/teacher';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-teacher-grade-exam',
@@ -13,12 +14,16 @@ export class TeacherGradeExamComponent implements OnInit {
 
   grade: Grade[];
   teacherName: Teacher[];
+  username:string;
+  currentExam:number;
 
-  constructor(private tchServ: TeacherService) { }
+  constructor(private tchServ: TeacherService,private cookieService:CookieService) { }
 
   ngOnInit() {
-    this.getExams(22);
-    this.getTeacherName(2);
+    this.username = this.cookieService.get('Username');
+    this.currentExam = parseInt(this.cookieService.get('CurrentGradeExam'));
+    this.getExams(this.currentExam);
+    this.getTeacherName(parseInt(this.username));
   }
 
   async getExams(examId: number) {

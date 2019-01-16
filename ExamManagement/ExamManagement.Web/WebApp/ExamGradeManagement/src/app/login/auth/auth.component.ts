@@ -21,7 +21,7 @@ export class AuthComponent implements OnInit {
 
   async getLogin(id : string, password : string) {
     this.loggedUser = await this.loginService.getUserDetails(id, password);
-    this.cookieService.set( 'Username', id );
+    this.cookieService.set( 'Username', this.loggedUser.id );
     this.chekIfStudentOrProf(this.loggedUser);
   }
 
