@@ -13,13 +13,13 @@ export class ExamenContentComponent implements OnInit {
 
   exams:Exam[];
   username:string;
-  
+
   constructor(private studServ:StudentService, private cookieService:CookieService) { }
 
   ngOnInit() {
     this.username = this.cookieService.get('Username');
     // this.getAllExamsForStudent(this.username);
-    this.getAllExamsForStudent("JCPD2JFUEOJF2KFJ9");
+    this.getAllExamsForStudent("JCPD2JFUEO20DKFJ9");
   }
 
 

@@ -6,9 +6,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TeacherService {
 
-  examUrl: string = 'https://localhost:5001/Grades/All';
-  teacherUrl: string = 'https://localhost:5001/api/Teachers';
-  updateGradeUrl: string = 'https://localhost:5001/Grades';
+  examUrl: string = 'https://localhost:44390/Grades/All';
+  teacherUrl: string = 'https://localhost:44390/api/Teachers';
+  updateGradeUrl: string = 'https://localhost:44390/Grades';
 
   constructor (private http: HttpClient) {}
 
